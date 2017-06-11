@@ -26,12 +26,12 @@ def zoomablesunburst(request, matrix="linesOfCode", query="inherited"):
 	context = {'matrix':matrix, 'query':query}
 	return render(request, 'website/zoomablesunburst.html', context)
     
-def edgebundling(request):
-	context = {}
+def edgebundling(request, matrix="linesOfCode", query="inherited"):
+	context = {'matrix':matrix, 'query':query}
 	return render(request, 'website/edgebundling.html', context)
 
-def circlepacking(request):
-	context = {}
+def circlepacking(request, matrix="linesOfCode", query="inherited"):
+	context = {'matrix':matrix, 'query':query}
 	return render(request, 'website/circlepacking.html', context)
 
 

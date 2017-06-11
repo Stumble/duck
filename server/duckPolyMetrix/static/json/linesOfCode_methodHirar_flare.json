@@ -1,1 +1,1 @@
-{"name":"base","children":[{"name":"class testMyOuter::testMyInner::Base","children":[]},{"name":"class testMyOuter::testMyInner::Foo","children":[{"name":"print(std::string)","size":5}]}]}
+{"name":"base","children":[{"name":"class testMyOuter::testMyInner::Base","children":[]},{"name":"class testMyOuter::testMyInner::Bar","children":[{"name":"test(const class testMyOuter::testMyInner::Foo **const)","size":8},{"name":"test()","size":7}]},{"name":"class testMyOuter::testMyInner::Foo","children":[{"name":"print(std::string)","size":5}]}]}

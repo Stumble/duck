@@ -1,1 +1,1 @@
-[{"imports":[],"name":"class testMyOuter::testMyInner::Base","size":0},{"imports":[],"name":"class testMyOuter::testMyInner::Foo","size":5}]
+[{"imports":["class testMyOuter::testMyInner::Bar"],"name":"class testMyOuter::testMyInner::Base","size":0},{"imports":[],"name":"class testMyOuter::testMyInner::Bar","size":15},{"imports":["class testMyOuter::testMyInner::Bar"],"name":"class testMyOuter::testMyInner::Foo","size":5}]

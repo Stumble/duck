@@ -1,4 +1,5 @@
 {% load static %}
+{% static "" as baseUrl %}
 <!DOCTYPE html>
 <html lang="en">
 <!-- define the style for the collapsible trees -->
@@ -107,7 +108,7 @@
                         </h1>
                     </div>
                     <div id = "graph"> <svg width="960" height="960"></svg> </div>
-                    <script> var sourceUrl = "{% static 'json/flarecircle.json' %}";</script>
+                    <script> var sourceUrl = "{{baseUrl}}json/{{matrix}}_{{query}}_flare.json";</script>
                     <script type = 'text/javascript' src = "{% static 'graph/circlepacking.js' %}"> </script>
                 </div>
             </div>

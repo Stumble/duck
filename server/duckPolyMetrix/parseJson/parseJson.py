@@ -162,9 +162,9 @@ def parse(resultJson, projectDir):
 
     print "generate output json file"
     outputJson.outputFlareInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_flare.json")
-    outputJson.outputBundlingInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_bundling.json")
-    outputJson.outputBundlingFieldTypeJson(baseClasses, classesQueryDic, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_bundling.json")
-    outputJson.outputMethodHirJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_methodHirar_flare.json")
+    outputJson.outputBundlingInheritedJson(classesList, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_bundling.json")
+    outputJson.outputBundlingFieldTypeJson(classesList, classesQueryDic, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_feild_bundling.json")
+    outputJson.outputMethodHirJson(classesList, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_methodHirar_flare.json")
     outputCSV.outputInheritedCSV(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_flare.csv")
 
     print baseClasses
