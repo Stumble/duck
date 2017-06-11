@@ -11,6 +11,10 @@ is_in_system_header = clang.cindex.conf.lib.clang_Location_isInSystemHeader
 g_classes = {}
 g_final_result = {}
 
+# some classes might be header-only
+# output them if we failed to find them in g_final_result
+g_final_header_only_class = {}
+
 class cxxClass:
     def __init__(self, name, base_list):
         """
@@ -257,6 +261,8 @@ if len(sys.argv) > 1:
         for (k, v) in g_classes.iteritems():
             if v.implemented:
                 g_final_result[k] = v
+            else:
+                g_final_header_only_class[k] = v
         # clean global variable
         g_classes = {}
 else:
@@ -266,7 +272,11 @@ def final_dump():
     rtn = {}
     class_all = {}
     for (k, v) in g_final_result.iteritems():
-        class_all[k] = v.convert_to_json_dict();
+        class_all[k] = v.convert_to_json_dict()
+    # add all header-only classes
+    for (k, v) in g_final_header_only_class.iteritems():
+        if not (k in g_final_result):
+            class_all[k] = v.convert_to_json_dict()
     rtn['classes'] = class_all
     # print json.dumps(rtn)
     print json.dumps(rtn, indent=2)
