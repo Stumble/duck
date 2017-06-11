@@ -23,28 +23,30 @@ attrNumOfMethods = 'numOfMethods'
 # {
 #   "classes": {
 #     "class testMyOuter::testMyInner::Base": {
-#       "fileds": {
+#       "fields": {
 #         "x": "class int"
 #       },
 #       "methods": {},
 #       "base_list": []
 #     },
 #     "class testMyOuter::testMyInner::Bar": {
-#       "fileds": {
-#         "myDad": "class testMyOuter::testMyInner::Foo"
+#       "fields": {
+#         "myDad": "class testMyOuter::testMyInner::Foo",
+#         "hahah": "class testMyOuter::testMyInner::Foo",
+#         "myDzz": "class testMyOuter::testMyInner::Foo"
 #       },
 #       "methods": {
-#         "test(const class testMyOuter::testMyInner::Foo *const)": {
+#         "test(const class testMyOuter::testMyInner::Foo **const)": {
 #           "linesOfCode": 8,
-#           "parameter": [
-#             "shit"
-#           ],
+#           "parameter": {
+#             "shit": "class testMyOuter::testMyInner::Foo"
+#           },
 #           "calling-function": [],
 #           "run-time-invokes": 0
 #         },
 #         "test()": {
 #           "linesOfCode": 7,
-#           "parameter": [],
+#           "parameter": {},
 #           "calling-function": [],
 #           "run-time-invokes": 0
 #         }
@@ -55,16 +57,16 @@ attrNumOfMethods = 'numOfMethods'
 #       ]
 #     },
 #     "class testMyOuter::testMyInner::Foo": {
-#       "fileds": {
+#       "fields": {
 #         "xx": "class int",
 #         "id": "class int"
 #       },
 #       "methods": {
 #         "print(std::string)": {
 #           "linesOfCode": 5,
-#           "parameter": [
-#             "str"
-#           ],
+#           "parameter": {
+#             "str": "class std::string"
+#           },
 #           "calling-function": [],
 #           "run-time-invokes": 0
 #         }
