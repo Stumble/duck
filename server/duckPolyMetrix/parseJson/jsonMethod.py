@@ -12,6 +12,7 @@ class JMethod(object):
 		self.lineOfCode = 0
 		self.runTimeInvokes = 0
 		self.attrDic = {}
+		self.returnType = None
 
 	def addParameters(self, paraType):
 		self.parameters.append(paraType)

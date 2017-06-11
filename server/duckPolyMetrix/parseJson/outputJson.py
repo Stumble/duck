@@ -106,6 +106,8 @@ def outputBundlingFieldTypeJson(classList, classesQueryDic, matrix, outputFile):
 			for p in method.parameters:
 				if p in classesQueryDic:
 					classDic['imports'].append(p)
+			if method.returnType and method.returnType in classesQueryDic:
+				classDic['imports'].append(method.returnType)
 		outerList.append(classDic)
 
 	result = json.dumps(outerList, separators=(',',':'))

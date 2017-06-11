@@ -16,6 +16,7 @@ fieldsAttr = 'fields'
 methodRunTimeAttr = 'run-time invokes'
 methodLOCAttr = 'linesOfCode'
 methodParaAttr = 'parameter'
+methodReturnAttr = 'return_type'
 methodCallingFuncAttr = 'calling-function'
 
 attrLinesOfCode = 'linesOfCode'
@@ -136,11 +137,10 @@ def parse(resultJson, projectDir):
           if methodParaAttr in methodAttrDic:
                   parameterDic = methodAttrDic[methodParaAttr]
                   if isinstance(parameterDic, dict):
-	                  print methodAttrDic
-	                  print parameterDic
-
 	                  for paraName in parameterDic:
 	                    m.addParameters(parameterDic[paraName])
+	        if methodReturnAttr in methodAttrDic:
+	        	m.returnType = methodAttrDic[methodReturnAttr]
           if methodCallingFuncAttr in methodAttrDic:
                   callingList = methodAttrDic[methodCallingFuncAttr]
                   for callingfunc in callingList:
