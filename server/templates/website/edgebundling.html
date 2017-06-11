@@ -104,13 +104,13 @@
                         <a href="{% url 'collapsibletree' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Hierarchy</a>
                     </li>
                     <li>
-                        <a href="{% url 'zoomablesunburst' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Sunburst</a>
+                        <a href="{% url 'zoomablesunburst' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Sunburst</a>
                     </li>
                     <li class="active">
-                        <a href="{% url 'edgebundling' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Edge Bundling</a>
+                        <a href="{% url 'edgebundling' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Edge Bundling</a>
                     </li>
                     <li>
-                        <a href="{% url 'circlepacking' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Circle Packing</a>
+                        <a href="{% url 'circlepacking' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Circle Packing</a>
                     </li>
                 </ul>
             </div>
@@ -125,10 +125,19 @@
                         <h1 class="page-header">
                             Program Hierachy <small>Edge Bundling</small>
                         </h1>
+                        <div id="selectBtn">
+                            {% if query == 'inherited' %}
+                            <button type="button" class="btn btn-info active" ><a href="{% url 'edgebundling' 'linesOfCode' 'inherited' %}">inherited</a></button>
+                            <button type="button" class="btn btn-info"><a href="{% url 'edgebundling' 'linesOfCode' 'methodHirar' %}">methods</a></button>
+                            {% else %}
+                            <button type="button" class="btn btn-info" ><a href="{% url 'edgebundling' 'linesOfCode' 'inherited' %}">inherited</a></button>
+                            <button type="button" class="btn btn-info active"><a href="{% url 'edgebundling' 'linesOfCode' 'methodHirar' %}">methods</a></button>
+                            {% endif %}
+                        </div>
                     </div>
                     <div id = "graph"> </div>
                     <script> var sourceUrl = "{{baseUrl}}json/{{matrix}}_{{query}}_bundling.json";</script>
-                    <script type = 'text/javascript' src = "{% static 'graph/collapsibletree.js' %}"> </script>
+                    <script type = 'text/javascript' src = "{% static 'graph/edgebundling.js' %}"> </script>
                 </div>
             </div>
 

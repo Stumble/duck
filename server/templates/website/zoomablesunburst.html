@@ -67,13 +67,13 @@ text {
                         <a href="{% url 'collapsibletree' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Hierarchy</a>
                     </li>
                     <li class="active">
-                        <a href="{% url 'zoomablesunburst' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Sunburst</a>
+                        <a href="{% url 'zoomablesunburst' 'linesOfCode' 'inherited'  %}"><i class="fa fa-fw fa-bar-chart-o"></i> Sunburst</a>
                     </li>
                     <li>
-                        <a href="{% url 'edgebundling' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Edge Bundling</a>
+                        <a href="{% url 'edgebundling' 'linesOfCode' 'inherited'  %}"><i class="fa fa-fw fa-bar-chart-o"></i> Edge Bundling</a>
                     </li>
                     <li>
-                        <a href="{% url 'circlepacking' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Circle Packing</a>
+                        <a href="{% url 'circlepacking' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Circle Packing</a>
                     </li>
                 </ul>
             </div>
@@ -89,6 +89,15 @@ text {
                             Program Hierachy <small>Zoomable Sunburst</small>
                         </h1>
                     </div>
+                        <div id="selectBtn">
+                            {% if query == 'inherited' %}
+                            <button type="button" class="btn btn-info active" ><a href="{% url 'zoomablesunburst' 'linesOfCode' 'inherited' %}">inherited</a></button>
+                            <button type="button" class="btn btn-info"><a href="{% url 'zoomablesunburst' 'linesOfCode' 'methodHirar' %}">methods</a></button>
+                            {% else %}
+                            <button type="button" class="btn btn-info" ><a href="{% url 'zoomablesunburst' 'linesOfCode' 'inherited' %}">inherited</a></button>
+                            <button type="button" class="btn btn-info active"><a href="{% url 'zoomablesunburst' 'linesOfCode' 'methodHirar' %}">methods</a></button>
+                            {% endif %}
+                        </div>
                     <div id = "graph"> </div>
                     <script> var sourceUrl = "{{baseUrl}}json/{{matrix}}_{{query}}_flare.json";</script>
                     <script type = 'text/javascript' src = "{% static 'graph/zoomablesunburst.js' %}"> </script>
