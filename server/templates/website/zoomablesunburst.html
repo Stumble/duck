@@ -60,13 +60,13 @@ text {
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="{% url 'index' %}"><i class="fa fa-fw fa-edit"></i> Overview</a>
                     </li>
                     <li>
-                        <a href="{% url 'collapsibletree' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Hierarchy</a>
+                        <a href="{% url 'collapsibletree' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Hierarchy</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="{% url 'zoomablesunburst' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Sunburst</a>
                     </li>
                     <li>

@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     url(r'^index', views.index, name='index'),
-    url(r'^collapsibletree', views.collapsibletree, name='collapsibletree'),
+    url(r'^collapsibletree/(?P<matrix>\w+)/(?P<query>\w+)/$', views.collapsibletree, name='collapsibletree'),
     url(r'^zoomablesunburst', views.zoomablesunburst, name='zoomablesunburst'),
     url(r'^edgebundling', views.edgebundling, name='edgebundling'),
     url(r'^circlepacking', views.circlepacking, name='circlepacking'),

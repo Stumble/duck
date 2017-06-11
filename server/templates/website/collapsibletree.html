@@ -23,6 +23,9 @@
   stroke: #ccc;
   stroke-width: 1.5px;
 }
+
+#selectBtn {
+}
 </style>
 <head>
 
@@ -68,11 +71,11 @@
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
+                    <li>
                         <a href="{% url 'index' %}"><i class="fa fa-fw fa-edit"></i> Overview</a>
                     </li>
-                    <li>
-                        <a href="{% url 'collapsibletree' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Hierarchy</a>
+                    <li class="active">
+                        <a href="{% url 'collapsibletree' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Hierarchy</a>
                     </li>
                     <li>
                         <a href="{% url 'zoomablesunburst' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Sunburst</a>
@@ -96,7 +99,17 @@
                         <h1 class="page-header">
                             Program Hierachy <small>Collapsible Tree</small>
                         </h1>
+                        <div id="selectBtn">
+                            {% if query == 'inherited' %}
+                            <button type="button" class="btn btn-info active" ><a href="{% url 'collapsibletree' 'linesOfCode' 'inherited' %}">inherited</a></button>
+                            <button type="button" class="btn btn-info"><a href="{% url 'collapsibletree' 'linesOfCode' 'methodHirar' %}">methods</a></button>
+                            {% else %}
+                            <button type="button" class="btn btn-info" ><a href="{% url 'collapsibletree' 'linesOfCode' 'inherited' %}">inherited</a></button>
+                            <button type="button" class="btn btn-info active"><a href="{% url 'collapsibletree' 'linesOfCode' 'methodHirar' %}">methods</a></button>
+                            {% endif %}
+                        </div>
                     </div>
+                    <hr/>
                     <div id = "graph"> </div>
                     <script> var sourceUrl = "{{baseUrl}}json/{{matrix}}_{{query}}_flare.json";</script>
                     <script type = 'text/javascript' src = "{% static 'graph/collapsibletree.js' %}"> </script>
