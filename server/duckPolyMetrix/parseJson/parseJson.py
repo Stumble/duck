@@ -7,7 +7,7 @@ import buildTree
 import outputJson
 import outputCSV
 
-inHeritedListAttr = 'inherited list'
+inHeritedListAttr = 'base_list'
 classesAttr = 'classes'
 methodsAttr = 'methods'
 
