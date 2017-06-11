@@ -44,7 +44,7 @@ def zoomablesunburst(request, matrix="linesOfCode", query="inherited"):
 	context = {'matrix':matrix, 'query':query}
 	print context
 	return render(request, 'website/zoomablesunburst.html', context)
-    
+
 def edgebundling(request, matrix="linesOfCode", query="inherited"):
 	if "selectType" in request.POST:
 		query = request.POST['selectType']
@@ -61,6 +61,14 @@ def circlepacking(request, matrix="linesOfCode", query="inherited"):
 		matrix = request.POST['selectMetrix']
 	context = {'matrix':matrix, 'query':query}
 	return render(request, 'website/circlepacking.html', context)
+
+def bubblechart(request, matrix="linesOfCode", query="inherited"):
+	if "selectType" in request.POST:
+		query = request.POST['selectType']
+	if "selectMetrix" in request.POST:
+		matrix = request.POST['selectMetrix']
+	context = {'matrix':matrix, 'query':query}
+	return render(request, 'website/bubblechart.html', context)
 
 
 def getResult(request, attribute='linesOfCode', type='inherited', projectName='default'):

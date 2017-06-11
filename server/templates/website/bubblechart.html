@@ -114,13 +114,13 @@
                     <li>
                         <a href="{% url 'zoomablesunburst' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Sunburst</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="{% url 'edgebundling' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Edge Bundling</a>
                     </li>
                     <li>
                         <a href="{% url 'circlepacking' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Circle Packing</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="{% url 'bubblechart' 'linesOfCode' 'inherited' %}"><i class="fa fa-fw fa-bar-chart-o"></i> Bubble Chart</a>
                     </li>
                 </ul>
@@ -134,9 +134,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Program Hierachy <small>Edge Bundling</small>
+                            Program Hierachy <small>Bubble Chart</small>
                         </h1>
-                        <form action="{% url 'edgebundling' 'linesOfCode' 'inherited'%}" method="post">
+                        <form action="{% url 'bubblechart' 'linesOfCode' 'inherited'%}" method="post">
                         {% csrf_token %}
                               <div class="form-group flotLeft">
                                 <label for="selectType">Select type:</label>
@@ -155,9 +155,10 @@
                               <button type="submit" class="pull-right btn btn-primary">Submit</button>
                         </form>
                     </div>
-                    <div id = "graph"> </div>
-                    <script> var sourceUrl = "{{baseUrl}}json/{{matrix}}_{{query}}_bundling.json";</script>
-                    <script type = 'text/javascript' src = "{% static 'graph/edgebundling.js' %}"> </script>
+                    <div id = "graph"> <svg width="960" height="960" font-family="sans-serif" font-size="10" text-anchor="middle"></svg> </div>
+
+                    <script> var sourceUrl = "{{baseUrl}}json/flarebubble.csv";</script>
+                    <script type = 'text/javascript' src = "{% static 'graph/bubblechart.js' %}"> </script>
                 </div>
             </div>
 
