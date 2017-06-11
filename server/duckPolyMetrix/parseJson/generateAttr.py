@@ -1,0 +1,2 @@
+
+def generateAttribute(classesList, classesQueryDic)

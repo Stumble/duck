@@ -1,0 +1,37 @@
+{  
+   "classes":{
+      "foo":{  
+         "inherited list":[  
+            "bar"
+         ],
+         "methods": 
+            {
+               "addAandB":{
+                  "parameter":
+                     [ 
+                        "Int",
+                        "Bool",
+                        "MyClass"
+                     ],
+                  "calling-function":[  
+                     "bar.init"
+                  ],
+                  "linesOfCode":38,
+                  "run-time invokes":10
+               }
+            }
+      },
+      "bar":{
+         "inherited list":[],
+         "methods":
+            {
+               "init":{
+                  "parameter":[],
+                  "linesOfCode":0,
+                  "run-time invokes":0,
+                  "calling-function":[]
+               }
+            }
+      }
+   }
+}
