@@ -38,3 +38,28 @@ def getFlareInheritedJsonRec(nodeClass, matrix):
 			childDic = getFlareInheritedJsonRec(childClass, matrix)
 			nonLeafDic['children'].append(childDic)
 		return nonLeafDic
+
+def outputBundlingInheritedJson(classList, matrix, outputFile):
+	f = open(outputFile, 'w')
+
+	outerList = []
+
+
+	print 'start generate json file'
+	for classNode in classList:
+		if not matrix in classNode.attrDic:
+			print matrix, classNode.attrDic
+			raise Exception("matrix doesn't exist")
+		classDic = {}
+		classDic['name'] = classNode.name
+		classDic['size'] = classNode.attrDic[matrix]
+		classDic['imports'] = []
+		for childClass in classNode.childClasses:
+			classDic['imports'].append(childClass.name)
+		outerList.append(classDic)
+
+	result = json.dumps(outerList, separators=(',',':'))
+
+	print 'generate successfully'
+	f.write(result)
+	f.close()

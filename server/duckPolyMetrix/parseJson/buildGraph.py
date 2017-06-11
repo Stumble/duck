@@ -1,6 +1,5 @@
 
-
-def buildInhritedTree(classesList, classesQueryDic):
+def buildInhritedGraph(classesList, classesQueryDic):
 	for c in classesList:
 		for inherited in c.inheritedList:
 			if not inherited in classesQueryDic:
