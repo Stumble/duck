@@ -118,13 +118,26 @@ def processInClassFuncDecl(cursor):
             pass
     return parameter_list
 
+def remove_keyword_in_string(target, keyword):
+    # TODO
+    # this will remove keyword in **keyword**
+    # should check whether before end with space
+    # or after start with space
+    rtn = ""
+    while True:
+        (before, cls, after) = target.partition(keyword)
+        rtn += before
+        if after:
+            target = after
+        else:
+            break
+    return rtn
 
 def drop_qualifier_and_pointer(full_type_name):
-    name_components = full_type_name.split(" ")
-    i = 0
-    while (name_components[i] in ['const', 'volatile', 'mutable']):
-        i += 1
-    return name_components[i]
+    id_list = ['const', 'volatile', 'mutable', '*', '&']
+    for kw in id_list:
+        full_type_name = remove_keyword_in_string(full_type_name, kw)
+    return full_type_name.strip()
 
 # this function will remove all "class " in the string
 # input: str
