@@ -14,7 +14,7 @@ var diagonal = d3.svg.diagonal()
 
 
 // append("g") means group SVG shapes together
-var svg = d3.select("graph")
+var svg = d3.select("#graph")
     .append("svg")
 //    .append("div")
     .attr("width", width + margin.right + margin.left)

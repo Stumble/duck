@@ -26,7 +26,7 @@ def zoomablesunburst(request):
 	return render(request, 'website/zoomablesunburst.html', context)
 
 def getResult(request, projectName):
-	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/project/" + projectName
+	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json"
 	print projectDir
 	if not os.path.exists(projectDir):
 		os.makedirs(projectDir)
