@@ -1,0 +1,14 @@
+
+* C++ parser for DUCK project
+This is a C++ parser based on libclang and it's python bindings.
+
+* installation
+Dependencies are:
++ libclang
++ python-libclang
+
+If you are Debian/Ubuntu user, following commands will install everything you need:
+
+#+begin_src shell
+sudo apt-get install libclang-3.8-dev python-clang-3.8
+#+end_src
