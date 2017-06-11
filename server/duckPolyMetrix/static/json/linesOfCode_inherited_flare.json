@@ -1,1 +1,1 @@
-{"name":"base","children":[{"name":"class testMyOuter::testMyInner::Base","children":[{"name":"class testMyOuter::testMyInner::Bar","size":15}]},{"name":"class testMyOuter::testMyInner::Foo","children":[{"name":"class testMyOuter::testMyInner::Bar","size":15}]}]}
+{"name":"base","children":[{"name":"class ndn::ndns::Zone","size":5},{"name":"class ndn::ndns::Response","size":137},{"name":"class ndn::ndns::Rrset","size":15},{"name":"class ndn::ndns::RrsetFactory","size":238},{"name":"class ndn::ndns::CertHelper","size":93}]}
