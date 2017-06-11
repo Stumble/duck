@@ -40,6 +40,12 @@ Bar::test(const Foo ** const shit)
     std::cout << "hahaha" << std::endl;
 }
 
+const Foo*
+Bar::returnTypeFunc()
+{
+    return NULL;
+}
+
 
 int main(int argc, char *argv[])
 {

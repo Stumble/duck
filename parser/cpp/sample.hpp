@@ -37,6 +37,10 @@ public:
 
     void
     test(const Foo ** const shit);
+
+    const Foo*
+    returnTypeFunc();
+
 public:
     Foo myDad;
     Foo* myDzz;

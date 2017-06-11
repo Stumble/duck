@@ -52,7 +52,7 @@ class cxxClass:
 
 
 class cxxFunction:
-    def __init__(self, name, parameters):
+    def __init__(self, name, parameters, rtn_type):
         """
         (str) function name
         (list) its parameter list
@@ -61,6 +61,7 @@ class cxxFunction:
         self.parameters = parameters
         self.call_list = []
         self.n_lines_of_code = 0
+        self.return_type = rtn_type
 
     def convert_to_json_dict(self):
         rtn = {}
@@ -70,6 +71,7 @@ class cxxFunction:
         rtn['linesOfCode'] = self.n_lines_of_code
         rtn['calling-function'] = self.call_list
         rtn['parameter'] = self.parameters
+        rtn['return_type'] = self.return_type
         return rtn
 
     def addCall(self, calledFunction):
@@ -95,7 +97,8 @@ def getFullClassName(cc):
     parents.reverse()
     return "class " + "::".join(parents)
 
-# def cleanFuncName(name):
+def extract_function_return_type(cursor):
+    return "class " + drop_qualifier_and_pointer(cursor.result_type.spelling)
 
 def processInClassFuncDecl(cursor):
     parameter_list = []
@@ -117,6 +120,19 @@ def drop_qualifier_and_pointer(full_type_name):
         i += 1
     return name_components[i]
 
+# this function will remove all "class " in the string
+# input: str
+# rtn  : str
+def remove_class_prefix(full_name):
+    rtn = ""
+    while True:
+        (before, cls, after) = full_name.partition('class ')
+        rtn += before
+        if after:
+            full_name = after
+        else:
+            break
+    return rtn
 
 def processClassDecl(cursor):
     class_name = getFullClassName(cursor)
@@ -134,9 +150,10 @@ def processClassDecl(cursor):
     # process each function
     for cc in cursor.get_children():
         if cc.kind == CursorKind.CXX_METHOD:
+            rtn_type = extract_function_return_type(cc)
             para_list = processInClassFuncDecl(cc);
             funcName = cc.displayname
-            cls.setFunction(cxxFunction(funcName, para_list))
+            cls.setFunction(cxxFunction(funcName, para_list, rtn_type))
         elif cc.kind == CursorKind.FIELD_DECL:
             # print "playing with:" + str(cc.displayname)
             pure_type_name = drop_qualifier_and_pointer(cc.type.spelling)
@@ -154,6 +171,7 @@ def processStandaloneFuncDecl(cursor):
     n_lines_of_code = cursor.extent.end.line - cursor.extent.start.line + 1
     belonged_class_name = ""
     parameter_list = {}
+    rtn_type = extract_function_return_type(cursor)
 
     for cc in cursor.get_children():
         if cc.kind == CursorKind.TYPE_REF:
@@ -179,7 +197,7 @@ def processStandaloneFuncDecl(cursor):
         else:
             pass
 
-    updated_func = cxxFunction(function_name, parameter_list)
+    updated_func = cxxFunction(function_name, parameter_list, rtn_type)
     updated_func.n_lines_of_code = n_lines_of_code
 
     if belonged_class_name in g_classes:
