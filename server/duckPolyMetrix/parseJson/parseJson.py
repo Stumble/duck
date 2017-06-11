@@ -20,6 +20,7 @@ methodCallingFuncAttr = 'calling-function'
 
 attrLinesOfCode = 'linesOfCode'
 attrNumOfMethods = 'numOfMethods'
+attrNumOfFields = 'numOfFields'
 
 # example JSON file
 # {
@@ -96,6 +97,7 @@ def parse(resultJson, projectDir):
 
       c.attrDic[attrLinesOfCode] = 0
       c.attrDic[attrNumOfMethods] = 0
+      c.attrDic[attrNumOfFields] = 0
 
       if inHeritedListAttr in attrDic:
         for inheritedClass in attrDic[inHeritedListAttr]:
@@ -107,10 +109,12 @@ def parse(resultJson, projectDir):
           c.attrDic[attrNumOfMethods] += 1
           methodAttrDic = methodsDic[methodName]
           m = JMethod(methodName, className)
+          m.attrDic[attrLinesOfCode] = 0
           if methodRunTimeAttr in methodAttrDic:
                   m.setRunTimeInvokes(methodAttrDic[methodRunTimeAttr])
           if methodLOCAttr in methodAttrDic:
                   m.setLineOfCode(methodAttrDic[methodLOCAttr])
+                  m.attrDic[attrLinesOfCode] = methodAttrDic[methodLOCAttr]
                   c.attrDic[attrLinesOfCode] += methodAttrDic[methodLOCAttr]
           if methodParaAttr in methodAttrDic:
                   parameterList = methodAttrDic[methodParaAttr]
@@ -126,9 +130,8 @@ def parse(resultJson, projectDir):
       	fieldsDic = attrDic[fieldsAttr]
       	print fieldsDic
       	for field in fieldsDic:
-      		print field
-      		print fieldsDic[field]
       		c.fieldDic[field] = fieldsDic[field]
+      		c.attrDic[attrNumOfFields] += 1
 
       classesList.append(c)
       classesQueryDic[className] = c
@@ -158,10 +161,11 @@ def parse(resultJson, projectDir):
     baseClasses = buildGraph.buildInhritedGraph(classesList, classesQueryDic)
 
     print "generate output json file"
-    outputJson.outputFlareInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"flare.json")
-    outputJson.outputBundlingInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"InheritedBundling.json")
-    outputJson.outputBundlingFieldTypeJson(baseClasses, classesQueryDic, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"FieldBundling.json")
-    outputCSV.outputInheritedCSV(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"flare.csv")
+    outputJson.outputFlareInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_flare.json")
+    outputJson.outputBundlingInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_bundling.json")
+    outputJson.outputBundlingFieldTypeJson(baseClasses, classesQueryDic, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_bundling.json")
+    outputJson.outputMethodHirJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_methodHirar_flare.json")
+    outputCSV.outputInheritedCSV(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_flare.csv")
 
     print baseClasses
 

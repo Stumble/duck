@@ -1,0 +1,1 @@
+{"name":"base","children":[{"name":"class testMyOuter::testMyInner::Base","children":[]},{"name":"class testMyOuter::testMyInner::Foo","children":[{"name":"print(std::string)","size":5}]}]}

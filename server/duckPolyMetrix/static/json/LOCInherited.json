@@ -1,1 +1,0 @@
-{"name":"flare","children":[{"name":"class testMyOuter::testMyInner::Base","children":[{"name":"class testMyOuter::testMyInner::Bar","size":15}]},{"name":"class testMyOuter::testMyInner::Foo","children":[{"name":"class testMyOuter::testMyInner::Bar","size":15}]}]}

@@ -1,6 +1,6 @@
 
 
-def buildInhritedTree(classesList, classesQueryDic):
+def buildMethodTree(classesList, classesQueryDic):
 	for c in classesList:
 		for inherited in c.inheritedList:
 			if not inherited in classesQueryDic:

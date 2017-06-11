@@ -64,6 +64,35 @@ def outputBundlingInheritedJson(classList, matrix, outputFile):
 	f.write(result)
 	f.close()
 
+def outputMethodHirJson(classList, matrix, outputFile):
+	f = open(outputFile, 'w')
+
+	outerList = {}
+
+
+	outerList['name'] = 'base'
+	outerList['children'] = []
+
+	print 'start generate json file'
+	for classNode in classList:
+		classDic = {}
+		classDic['name'] = classNode.name
+		classDic['children'] = []
+		for method in classNode.methods:
+			methodDic = {}
+			methodDic['name'] = method.name
+			if not matrix in method.attrDic:
+				raise Exception("matrix doesn't exist")
+			methodDic['size'] = method.attrDic[matrix]
+			classDic['children'].append(methodDic)
+		outerList['children'].append(classDic)
+
+	result = json.dumps(outerList, separators=(',',':'))
+
+	print 'generate successfully'
+	f.write(result)
+	f.close()
+
 def outputBundlingFieldTypeJson(classList, classesQueryDic, matrix, outputFile):
 	f = open(outputFile, 'w')
 

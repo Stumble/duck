@@ -17,13 +17,13 @@ def index(request):
     return render(request, 'website/index.html', context)
 
 
-def collapsibletree(request, matrix="linesOfCode"):
-	context = {'matrix':matrix}
+def collapsibletree(request, matrix="linesOfCode", query="inherited"):
+	context = {'matrix':matrix, 'query':query}
 	return render(request, 'website/collapsibletree.html', context)
 
 
-def zoomablesunburst(request, matrix="linesOfCode"):
-	context = {'matrix':matrix}
+def zoomablesunburst(request, matrix="linesOfCode", query="inherited"):
+	context = {'matrix':matrix, 'query':query}
 	return render(request, 'website/zoomablesunburst.html', context)
     
 def edgebundling(request):
@@ -35,7 +35,7 @@ def circlepacking(request):
 	return render(request, 'website/circlepacking.html', context)
 
 
-def getResult(request, attribute='linesOfCode', projectName='default'):
+def getResult(request, attribute='linesOfCode', type='inherited', projectName='default'):
 	print "get result"
 	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json"
 	print projectDir

@@ -11,6 +11,7 @@ class JMethod(object):
 		self.callingFunctions = []
 		self.lineOfCode = 0
 		self.runTimeInvokes = 0
+		self.attrDic = {}
 
 	def addParameters(self, paraType):
 		self.parameters.append(paraType)
