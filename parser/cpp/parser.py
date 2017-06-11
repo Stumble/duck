@@ -185,7 +185,8 @@ def processStandaloneFuncDecl(cursor):
     if belonged_class_name in g_classes:
         cls = g_classes[belonged_class_name]
         if not (function_name in cls.functions):
-            raise Exception("function not found")
+            pass
+            # raise Exception("function not found: " + function_name)
         cls.setImplementedFunction(updated_func)
         # cls.functions[function_name] =
     else:
