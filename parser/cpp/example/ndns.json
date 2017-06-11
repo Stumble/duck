@@ -1,0 +1,1602 @@
+{
+  "classes": {
+    "class ndn::ndns::RrsetFactory": {
+      "fields": {
+        "m_checked": "class bool", 
+        "m_zone": "class ndn::ndns::Zone", 
+        "m_dskName": "class ndn::Name", 
+        "m_dbFile": "class std::string", 
+        "m_dskCertName": "class ndn::Name", 
+        "m_keyChain": "class ndn::security::v2::KeyChain"
+      }, 
+      "methods": {
+        "checkZoneKey()": {
+          "linesOfCode": 10, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "sign(class ndn::Data &)": {
+          "linesOfCode": 5, 
+          "parameter": {
+            "data": "class ndn::Data"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setContentType(class ndn::Data &, enum ndn::ndns::NdnsContentType, const time::seconds &)": {
+          "linesOfCode": 7, 
+          "parameter": {
+            "contentType": "class ndn::ndns::NdnsContentType", 
+            "data": "class ndn::Data", 
+            "ttl": "class time::seconds"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "generateNsRrset(const class ndn::Name &, const uint64_t, time::seconds, const ndn::class Link::DelegationSet &)": {
+          "linesOfCode": 28, 
+          "parameter": {
+            "ttl": "class time::seconds", 
+            "version": "class uint64_t", 
+            "delegations": "class ndn::Link::DelegationSet", 
+            "label": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "generateAuthRrset(const class ndn::Name &, const uint64_t, time::seconds)": {
+          "linesOfCode": 24, 
+          "parameter": {
+            "ttl": "class time::seconds", 
+            "version": "class uint64_t", 
+            "label": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "wireEncode(const std::vector<Block> &)": {
+          "linesOfCode": 9, 
+          "parameter": {
+            "rrs": "class std::vector<Block>"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "wireDecodeTxt(const class ndn::Block &)": {
+          "linesOfCode": 13, 
+          "parameter": {
+            "wire": "class ndn::Block"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "generateDoeRrset(const class ndn::Name &, const uint64_t, time::seconds, const class ndn::Name &, const class ndn::Name &)": {
+          "linesOfCode": 31, 
+          "parameter": {
+            "ttl": "class time::seconds", 
+            "version": "class uint64_t", 
+            "upperLabel": "class ndn::Name", 
+            "lowerLabel": "class ndn::Name", 
+            "label": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "generateCertRrset(const class ndn::Name &, const uint64_t, time::seconds, const class ndn::security::v2::Certificate &)": {
+          "linesOfCode": 26, 
+          "parameter": {
+            "ttl": "class time::seconds", 
+            "cert": "class ndn::security::v2::Certificate", 
+            "version": "class uint64_t", 
+            "label": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "generateBaseRrset(const class ndn::Name &, const name::Component &, const uint64_t, const time::seconds &)": {
+          "linesOfCode": 28, 
+          "parameter": {
+            "ttl": "class time::seconds", 
+            "version": "class uint64_t", 
+            "type": "class name::Component", 
+            "label": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "generateTxtRrset(const class ndn::Name &, const uint64_t, time::seconds, const std::vector<std::string> &)": {
+          "linesOfCode": 33, 
+          "parameter": {
+            "ttl": "class time::seconds", 
+            "version": "class uint64_t", 
+            "strings": "class std::vector<std::string>", 
+            "label": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onlyCheckZone()": {
+          "linesOfCode": 14, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "matchCertificate(const class ndn::Name &, const class ndn::Name &)": {
+          "linesOfCode": 10, 
+          "parameter": {
+            "certName": "class ndn::Name", 
+            "identity": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": []
+    }, 
+    "class ndn::ndns::NdnsCacheResolver": {
+      "fields": {
+        "m_cache": "class ndn::util::InMemoryStorageLru", 
+        "m_validator": "class ndn::ndns::ValidatorNdns", 
+        "m_face": "class ndn::Face", 
+        "m_keyChain": "class ndn::security::v2::KeyChain", 
+        "m_standingQueries": "class std::list<shared_ptr<IterativeQueryController>"
+      }, 
+      "methods": {
+        "onNdnsQuery(const class ndn::Name &, const class ndn::Interest &)": {
+          "linesOfCode": 48, 
+          "parameter": {
+            "prefix": "class ndn::Name", 
+            "interest": "class ndn::Interest"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onReceiveResponse(const class ndn::Data &, const class ndn::ndns::Response &)": {
+          "linesOfCode": 27, 
+          "parameter": {
+            "data": "class ndn::Data", 
+            "response": "class ndn::ndns::Response"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onRegisterFailed(const class ndn::Name &, const std::string &)": {
+          "linesOfCode": 8, 
+          "parameter": {
+            "prefix": "class ndn::Name", 
+            "reason": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onFail(shared_ptr<const class ndn::Interest>, uint32_t, const std::string &)": {
+          "linesOfCode": 7, 
+          "parameter": {
+            "errMsg": "class std::string", 
+            "errCode": "class uint32_t", 
+            "interest": "class shared_ptr<const"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": [
+        "noncopyable"
+      ]
+    }, 
+    "class ndn::ndns::Response": {
+      "fields": {
+        "m_appContent": "class ndn::Block", 
+        "m_rrs": "class std::vector<Block>", 
+        "m_freshnessPeriod": "class time::seconds", 
+        "m_version": "class name::Component", 
+        "m_zone": "class ndn::Name", 
+        "m_rrLabel": "class ndn::Name", 
+        "m_queryType": "class name::Component", 
+        "m_contentType": "class ndn::ndns::NdnsContentType", 
+        "m_rrType": "class name::Component"
+      }, 
+      "methods": {
+        "getRrLabel()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "wireDecodeDoe(const class ndn::Block &)": {
+          "linesOfCode": 7, 
+          "parameter": {
+            "wire": "class ndn::Block"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setAppContent(const class ndn::Block &)": {
+          "linesOfCode": 10, 
+          "parameter": {
+            "block": "class ndn::Block"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getFreshnessPeriod()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "operator!=(const class ndn::ndns::Response &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "other"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getVersion()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "wireDecode(const class ndn::Block &)": {
+          "linesOfCode": 15, 
+          "parameter": {
+            "wire": "class ndn::Block"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getQueryType()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "fromData(const class ndn::Name &, const class ndn::Data &)": {
+          "linesOfCode": 23, 
+          "parameter": {
+            "data": "class ndn::Data", 
+            "zone": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setVersion(const name::Component &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "version"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getZone()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "wireEncode()": {
+          "linesOfCode": 13, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "addRr(const class ndn::Block &)": {
+          "linesOfCode": 6, 
+          "parameter": {
+            "rr": "class ndn::Block"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getRrs()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setRrs(const std::vector<Block> &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "rrs"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setZone(const class ndn::Name &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "zone"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "removeRr(const class ndn::Block &)": {
+          "linesOfCode": 11, 
+          "parameter": {
+            "rr": "class ndn::Block"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getRrType()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "addRr(const std::string &)": {
+          "linesOfCode": 5, 
+          "parameter": {
+            "rr": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setRrLabel(const class ndn::Name &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "rrLabel"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getContentType()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getAppContent()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "toData()": {
+          "linesOfCode": 30, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setRrType(const name::Component &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "rrType"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "operator==(const class ndn::ndns::Response &)": {
+          "linesOfCode": 17, 
+          "parameter": {
+            "other": "class ndn::ndns::Response"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setFreshnessPeriod(time::seconds)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "freshnessPeriod"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setQueryType(const name::Component &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "queryType"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setContentType(enum ndn::ndns::NdnsContentType)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "contentType"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": []
+    }, 
+    "class ndn::ndns::ValidatorNdns": {
+      "fields": {}, 
+      "methods": {
+        "onDataValidated(const class ndn::Data &)": {
+          "linesOfCode": 6, 
+          "parameter": {
+            "data": "class ndn::Data"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "validate(const class ndn::Data &, const DataValidationSuccessCallback &, const DataValidationFailureCallback &)": {
+          "linesOfCode": 19, 
+          "parameter": {
+            "onValidated": "class DataValidationSuccessCallback", 
+            "data": "class ndn::Data", 
+            "onValidationFailed": "class DataValidationFailureCallback"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onDataValidationFailed(const class ndn::Data &, const security::v2::ValidationError &)": {
+          "linesOfCode": 7, 
+          "parameter": {
+            "data": "class ndn::Data", 
+            "err": "class security::v2::ValidationError"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": [
+        "security::v2::Validator"
+      ]
+    }, 
+    "class ndn::ndns::DbMgr": {
+      "fields": {
+        "m_conn": "class sqlite3", 
+        "m_dbFile": "class std::string"
+      }, 
+      "methods": {
+        "find(class ndn::ndns::Zone &)": {
+          "linesOfCode": 24, 
+          "parameter": {
+            "zone": "class ndn::ndns::Zone"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "clearAllData()": {
+          "linesOfCode": 12, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "findRrsets(class ndn::ndns::Zone &)": {
+          "linesOfCode": 39, 
+          "parameter": {
+            "zone": "class ndn::ndns::Zone"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getZoneInfo(class ndn::ndns::Zone &)": {
+          "linesOfCode": 32, 
+          "parameter": {
+            "zone": "class ndn::ndns::Zone"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "remove(class ndn::ndns::Zone &)": {
+          "linesOfCode": 25, 
+          "parameter": {
+            "zone": "class ndn::ndns::Zone"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setZoneInfo(class ndn::ndns::Zone &, const std::string &, const class ndn::Block &)": {
+          "linesOfCode": 32, 
+          "parameter": {
+            "value": "class ndn::Block", 
+            "key": "class std::string", 
+            "zone": "class ndn::ndns::Zone"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "findLowerBound(class ndn::ndns::Rrset &)": {
+          "linesOfCode": 44, 
+          "parameter": {
+            "rrset": "class ndn::ndns::Rrset"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "insert(class ndn::ndns::Rrset &)": {
+          "linesOfCode": 42, 
+          "parameter": {
+            "rrset": "class ndn::ndns::Rrset"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "remove(class ndn::ndns::Rrset &)": {
+          "linesOfCode": 26, 
+          "parameter": {
+            "rrset": "class ndn::ndns::Rrset"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getDbFile()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "open()": {
+          "linesOfCode": 19, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "removeRrsetsOfZoneByType(class ndn::ndns::Zone &, const name::Component &)": {
+          "linesOfCode": 27, 
+          "parameter": {
+            "type": "class name::Component", 
+            "zone": "class ndn::ndns::Zone"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "find(class ndn::ndns::Rrset &)": {
+          "linesOfCode": 44, 
+          "parameter": {
+            "rrset": "class ndn::ndns::Rrset"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "insert(class ndn::ndns::Zone &)": {
+          "linesOfCode": 26, 
+          "parameter": {
+            "zone": "class ndn::ndns::Zone"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "close()": {
+          "linesOfCode": 15, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "listZones()": {
+          "linesOfCode": 24, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "update(class ndn::ndns::Rrset &)": {
+          "linesOfCode": 27, 
+          "parameter": {
+            "rrset": "class ndn::ndns::Rrset"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": [
+        "noncopyable"
+      ]
+    }, 
+    "class ndn::ndns::CertificateFetcherAppCert": {
+      "fields": {
+        "m_validator": "class ndn::ndns::ValidatorNdns", 
+        "m_face": "class ndn::Face"
+      }, 
+      "methods": {
+        "onQueryFailCallback(const std::string &, const shared_ptr<security::v2::CertificateRequest> &, const shared_ptr<security::v2::ValidationState> &, const ValidationContinuation &)": {
+          "linesOfCode": 9, 
+          "parameter": {
+            "continueValidation": "class ValidationContinuation", 
+            "state": "class shared_ptr<security::v2::ValidationState>", 
+            "certRequest": "class shared_ptr<security::v2::CertificateRequest>", 
+            "errMsg": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "doFetch(const shared_ptr<security::v2::CertificateRequest> &, const shared_ptr<security::v2::ValidationState> &, const ValidationContinuation &)": {
+          "linesOfCode": 22, 
+          "parameter": {
+            "continueValidation": "class ValidationContinuation", 
+            "state": "class shared_ptr<security::v2::ValidationState>", 
+            "certRequest": "class shared_ptr<security::v2::CertificateRequest>"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onQuerySuccCallback(const class ndn::Data &, const shared_ptr<security::v2::CertificateRequest> &, const shared_ptr<security::v2::ValidationState> &, const ValidationContinuation &)": {
+          "linesOfCode": 15, 
+          "parameter": {
+            "continueValidation": "class ValidationContinuation", 
+            "state": "class shared_ptr<security::v2::ValidationState>", 
+            "data": "class ndn::Data", 
+            "certRequest": "class shared_ptr<security::v2::CertificateRequest>"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onValidationSuccCallback(const class ndn::Data &, const shared_ptr<security::v2::CertificateRequest> &, const shared_ptr<security::v2::ValidationState> &, const ValidationContinuation &)": {
+          "linesOfCode": 22, 
+          "parameter": {
+            "continueValidation": "class ValidationContinuation", 
+            "state": "class shared_ptr<security::v2::ValidationState>", 
+            "data": "class ndn::Data", 
+            "certRequest": "class shared_ptr<security::v2::CertificateRequest>"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onValidationFailCallback(const security::v2::ValidationError &, const shared_ptr<security::v2::CertificateRequest> &, const shared_ptr<security::v2::ValidationState> &, const ValidationContinuation &)": {
+          "linesOfCode": 9, 
+          "parameter": {
+            "continueValidation": "class ValidationContinuation", 
+            "state": "class shared_ptr<security::v2::ValidationState>", 
+            "certRequest": "class shared_ptr<security::v2::CertificateRequest>", 
+            "err": "class security::v2::ValidationError"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": [
+        "security::v2::CertificateFetcher"
+      ]
+    }, 
+    "class ndn::ndns::Rrset": {
+      "fields": {
+        "m_id": "class uint64_t", 
+        "m_version": "class name::Component", 
+        "m_type": "class name::Component", 
+        "m_ttl": "class time::seconds", 
+        "m_zone": "class ndn::ndns::Zone", 
+        "m_label": "class ndn::Name", 
+        "m_data": "class ndn::Block"
+      }, 
+      "methods": {
+        "setId(uint64_t)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "id"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getTtl()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getType()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "operator!=(const class ndn::ndns::Rrset &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "other"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setLabel(const class ndn::Name &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "label"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setZone(class ndn::ndns::Zone *)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "zone"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getVersion()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setTtl(const time::seconds &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "ttl"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setType(const name::Component &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "type"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getLabel()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getData()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setVersion(const name::Component &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "version"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getZone()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setData(const class ndn::Block &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "data"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getId()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "operator==(const class ndn::ndns::Rrset &)": {
+          "linesOfCode": 15, 
+          "parameter": {
+            "other": "class ndn::ndns::Rrset"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": []
+    }, 
+    "class ndn::ndns::Zone": {
+      "fields": {
+        "m_ttl": "class time::seconds", 
+        "m_id": "class uint64_t", 
+        "m_name": "class ndn::Name"
+      }, 
+      "methods": {
+        "setId(uint64_t)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "id"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getTtl()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setName(const class ndn::Name &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "name"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getName()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setTtl(const time::seconds &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "ttl"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "operator!=(const class ndn::ndns::Zone &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "other"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getId()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getZone()": {
+          "linesOfCode": 5, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "operator==(const class ndn::ndns::Zone &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "other"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": []
+    }, 
+    "class ndn::ndns::CertificateFetcherNdnsCert": {
+      "fields": {
+        "m_face": "class ndn::Face"
+      }, 
+      "methods": {
+        "dataCallback(const class ndn::Data &, const shared_ptr<security::v2::CertificateRequest> &, const shared_ptr<security::v2::ValidationState> &, const ValidationContinuation &)": {
+          "linesOfCode": 18, 
+          "parameter": {
+            "continueValidation": "class ValidationContinuation", 
+            "state": "class shared_ptr<security::v2::ValidationState>", 
+            "data": "class ndn::Data", 
+            "certRequest": "class shared_ptr<security::v2::CertificateRequest>"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "nsSuccCallback(const class ndn::Data &, const shared_ptr<security::v2::CertificateRequest> &, const shared_ptr<security::v2::ValidationState> &, const ValidationContinuation &)": {
+          "linesOfCode": 33, 
+          "parameter": {
+            "continueValidation": "class ValidationContinuation", 
+            "state": "class shared_ptr<security::v2::ValidationState>", 
+            "data": "class ndn::Data", 
+            "certRequest": "class shared_ptr<security::v2::CertificateRequest>"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "nackCallback(const lp::Nack &, const shared_ptr<security::v2::CertificateRequest> &, const shared_ptr<security::v2::ValidationState> &, const ValidationContinuation &)": {
+          "linesOfCode": 19, 
+          "parameter": {
+            "continueValidation": "class ValidationContinuation", 
+            "nack": "class lp::Nack", 
+            "state": "class shared_ptr<security::v2::ValidationState>", 
+            "certRequest": "class shared_ptr<security::v2::CertificateRequest>"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "calculateDomain(const class ndn::Name &)": {
+          "linesOfCode": 10, 
+          "parameter": {
+            "key": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "doFetch(const shared_ptr<security::v2::CertificateRequest> &, const shared_ptr<security::v2::ValidationState> &, const ValidationContinuation &)": {
+          "linesOfCode": 23, 
+          "parameter": {
+            "continueValidation": "class ValidationContinuation", 
+            "state": "class shared_ptr<security::v2::ValidationState>", 
+            "certRequest": "class shared_ptr<security::v2::CertificateRequest>"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "nsFailCallback(const std::string &, const shared_ptr<security::v2::CertificateRequest> &, const shared_ptr<security::v2::ValidationState> &, const ValidationContinuation &)": {
+          "linesOfCode": 23, 
+          "parameter": {
+            "continueValidation": "class ValidationContinuation", 
+            "state": "class shared_ptr<security::v2::ValidationState>", 
+            "certRequest": "class shared_ptr<security::v2::CertificateRequest>", 
+            "errMsg": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "timeoutCallback(const shared_ptr<security::v2::CertificateRequest> &, const shared_ptr<security::v2::ValidationState> &, const ValidationContinuation &)": {
+          "linesOfCode": 17, 
+          "parameter": {
+            "continueValidation": "class ValidationContinuation", 
+            "state": "class shared_ptr<security::v2::ValidationState>", 
+            "certRequest": "class shared_ptr<security::v2::CertificateRequest>"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": [
+        "security::v2::CertificateFetcher"
+      ]
+    }, 
+    "class ndn::ndns::ManagementTool": {
+      "fields": {
+        "m_dbMgr": "class ndn::ndns::DbMgr", 
+        "m_keyChain": "class ndn::security::v2::KeyChain"
+      }, 
+      "methods": {
+        "getZoneDkey(class ndn::ndns::Zone &)": {
+          "linesOfCode": 6, 
+          "parameter": {
+            "zone": "class ndn::ndns::Zone"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getRrSet(const class ndn::Name &, const class ndn::Name &, const name::Component &, std::ostream &)": {
+          "linesOfCode": 20, 
+          "parameter": {
+            "os": "class std::ostream", 
+            "label": "class ndn::Name", 
+            "type": "class name::Component", 
+            "zoneName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "listAllZones(std::ostream &)": {
+          "linesOfCode": 23, 
+          "parameter": {
+            "os": "class std::ostream"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "checkRrsetVersion(const class ndn::ndns::Rrset &)": {
+          "linesOfCode": 16, 
+          "parameter": {
+            "rrset": "class ndn::ndns::Rrset"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "addMultiLevelLabelRrset(class ndn::ndns::Rrset &, class ndn::ndns::RrsetFactory &, const time::seconds &)": {
+          "linesOfCode": 52, 
+          "parameter": {
+            "rrset": "class ndn::ndns::Rrset", 
+            "authTtl": "class time::seconds", 
+            "zoneRrFactory": "class ndn::ndns::RrsetFactory"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "removeRrSet(const class ndn::Name &, const class ndn::Name &, const name::Component &)": {
+          "linesOfCode": 16, 
+          "parameter": {
+            "label": "class ndn::Name", 
+            "type": "class name::Component", 
+            "zoneName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "addRrsetFromFile(const class ndn::Name &, const std::string &, const time::seconds &, const class ndn::Name &, const ndn::io::IoEncoding, _Bool)": {
+          "linesOfCode": 74, 
+          "parameter": {
+            "inputDskCertName": "class ndn::Name", 
+            "encoding": "class ndn::io::IoEncoding", 
+            "needResign": "class bool", 
+            "ttl": "class time::seconds", 
+            "inFile": "class std::string", 
+            "zoneName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "addIdCert(class ndn::ndns::Zone &, const class ndn::security::v2::Certificate &, const time::seconds &, const class ndn::security::v2::Certificate &)": {
+          "linesOfCode": 23, 
+          "parameter": {
+            "cert": "class ndn::security::v2::Certificate", 
+            "dskCert": "class ndn::security::v2::Certificate", 
+            "zone": "class ndn::ndns::Zone", 
+            "ttl": "class time::seconds"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "addRrset(class ndn::ndns::Rrset &)": {
+          "linesOfCode": 17, 
+          "parameter": {
+            "rrset": "class ndn::ndns::Rrset"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "createZone(const class ndn::Name &, const class ndn::Name &, const time::seconds &, const time::seconds &, const class ndn::Name &, const class ndn::Name &, const class ndn::Name &)": {
+          "linesOfCode": 131, 
+          "parameter": {
+            "kskCertName": "class ndn::Name", 
+            "certValidity": "class time::seconds", 
+            "cacheTtl": "class time::seconds", 
+            "dkeyCertName": "class ndn::Name", 
+            "dskCertName": "class ndn::Name", 
+            "parentZoneName": "class ndn::Name", 
+            "zoneName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "deleteZone(const class ndn::Name &)": {
+          "linesOfCode": 18, 
+          "parameter": {
+            "zoneName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "exportCertificate(const class ndn::Name &, const std::string &)": {
+          "linesOfCode": 34, 
+          "parameter": {
+            "outFile": "class std::string", 
+            "certName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "generateDoe(class ndn::ndns::Zone &)": {
+          "linesOfCode": 51, 
+          "parameter": {
+            "zone": "class ndn::ndns::Zone"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "removeZone(class ndn::ndns::Zone &)": {
+          "linesOfCode": 9, 
+          "parameter": {
+            "zone": "class ndn::ndns::Zone"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "listZone(const class ndn::Name &, std::ostream &, const _Bool)": {
+          "linesOfCode": 123, 
+          "parameter": {
+            "os": "class std::ostream", 
+            "printRaw": "class bool", 
+            "zoneName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "matchCertificate(const class ndn::Name &, const class ndn::Name &)": {
+          "linesOfCode": 13, 
+          "parameter": {
+            "certName": "class ndn::Name", 
+            "identity": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "addZone(class ndn::ndns::Zone &)": {
+          "linesOfCode": 10, 
+          "parameter": {
+            "zone": "class ndn::ndns::Zone"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": [
+        "noncopyable"
+      ]
+    }, 
+    "class ndn::ndns::NameServer": {
+      "fields": {
+        "m_face": "class ndn::Face", 
+        "m_contentFreshness": "class time::milliseconds", 
+        "m_zone": "class ndn::ndns::Zone", 
+        "m_ndnsPrefix": "class ndn::Name", 
+        "m_certName": "class ndn::Name", 
+        "m_validator": "class ndn::ndns::ValidatorNdns", 
+        "m_dbMgr": "class ndn::ndns::DbMgr", 
+        "m_keyChain": "class ndn::security::v2::KeyChain"
+      }, 
+      "methods": {
+        "onRegisterFailed(const ndn::Name &, const std::string &)": {
+          "linesOfCode": 7, 
+          "parameter": {
+            "prefix": "class ndn::Name", 
+            "reason": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "handleQuery(const class ndn::Name &, const class ndn::Interest &, const label::MatchResult &)": {
+          "linesOfCode": 39, 
+          "parameter": {
+            "re": "class label::MatchResult", 
+            "prefix": "class ndn::Name", 
+            "interest": "class ndn::Interest"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onInterest(const class ndn::Name &, const class ndn::Interest &)": {
+          "linesOfCode": 14, 
+          "parameter": {
+            "prefix": "class ndn::Name", 
+            "interest": "class ndn::Interest"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setContentFreshness(const time::milliseconds &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "contentFreshness"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "doUpdate(const shared_ptr<const class ndn::Interest> &, const shared_ptr<const class ndn::Data> &)": {
+          "linesOfCode": 67, 
+          "parameter": {
+            "data": "class shared_ptr<const", 
+            "interest": "class shared_ptr<const"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getContentFreshness()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getNdnsPrefix()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getZone()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "handleUpdate(const class ndn::Name &, const class ndn::Interest &, const label::MatchResult &)": {
+          "linesOfCode": 24, 
+          "parameter": {
+            "re": "class label::MatchResult", 
+            "prefix": "class ndn::Name", 
+            "interest": "class ndn::Interest"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": [
+        "noncopyable"
+      ]
+    }, 
+    "class ndn::ndns::ConfigFile": {
+      "fields": {
+        "m_unknownSectionCallback": "class UnknownConfigSectionHandler", 
+        "m_subscriptions": "class SubscriptionTable", 
+        "m_global": "class ConfigSection"
+      }, 
+      "methods": {
+        "process(_Bool, const std::string &)": {
+          "linesOfCode": 32, 
+          "parameter": {
+            "isDryRun": "class bool", 
+            "filename": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "parse(const std::string &, _Bool, const std::string &)": {
+          "linesOfCode": 6, 
+          "parameter": {
+            "input": "class std::string", 
+            "isDryRun": "class bool", 
+            "filename": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "addSectionHandler(const std::string &, ConfigSectionHandler)": {
+          "linesOfCode": 6, 
+          "parameter": {
+            "subscriber": "class ConfigSectionHandler", 
+            "sectionName": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "parse(const std::string &, _Bool)": {
+          "linesOfCode": 15, 
+          "parameter": {
+            "isDryRun": "class bool", 
+            "filename": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "parse(std::istream &, _Bool, const std::string &)": {
+          "linesOfCode": 18, 
+          "parameter": {
+            "input": "class std::istream", 
+            "isDryRun": "class bool", 
+            "filename": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "ignoreUnknownSection(const std::string &, const std::string &, const ConfigSection &, _Bool)": {
+          "linesOfCode": 8, 
+          "parameter": {
+            "section": "class ConfigSection", 
+            "sectionName": "class std::string", 
+            "isDryRun": "class bool", 
+            "filename": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "throwErrorOnUnknownSection(const std::string &, const std::string &, const ConfigSection &, _Bool)": {
+          "linesOfCode": 12, 
+          "parameter": {
+            "section": "class ConfigSection", 
+            "sectionName": "class std::string", 
+            "isDryRun": "class bool", 
+            "filename": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": [
+        "boost::noncopyable"
+      ]
+    }, 
+    "class ndn::ndns::IterativeQueryController": {
+      "fields": {
+        "m_nTryComps": "class size_t", 
+        "m_doe": "class ndn::Data", 
+        "m_step": "class ndn::ndns::IterativeQueryController::QueryStep", 
+        "m_nFinishedComps": "class size_t", 
+        "m_lastLink": "class ndn::Block", 
+        "m_validator": "class ndn::ndns::ValidatorNdns", 
+        "m_lastLabelType": "class ndn::Name"
+      }, 
+      "methods": {
+        "makeLatestInterest()": {
+          "linesOfCode": 37, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getStep()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setStartComponentIndex(size_t)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "finished"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "express(const class ndn::Interest &)": {
+          "linesOfCode": 16, 
+          "parameter": {
+            "interest": "class ndn::Interest"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "hasEnded()": {
+          "linesOfCode": 5, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getNFinishedComps()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "abort()": {
+          "linesOfCode": 9, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onData(const ndn::Interest &, const class ndn::Data &)": {
+          "linesOfCode": 30, 
+          "parameter": {
+            "data": "class ndn::Data", 
+            "interest": "class ndn::Interest"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "start()": {
+          "linesOfCode": 9, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onTimeout(const class ndn::Interest &)": {
+          "linesOfCode": 7, 
+          "parameter": {
+            "interest": "class ndn::Interest"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "parseFinalResponse(const class ndn::Data &)": {
+          "linesOfCode": 8, 
+          "parameter": {
+            "data": "class ndn::Data"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "isAbsentByDoe(const class ndn::Data &)": {
+          "linesOfCode": 17, 
+          "parameter": {
+            "data": "class ndn::Data"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getNTryComps()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "onDataValidated(const class ndn::Data &, enum ndn::ndns::NdnsContentType)": {
+          "linesOfCode": 80, 
+          "parameter": {
+            "contentType": "class ndn::ndns::NdnsContentType", 
+            "data": "class ndn::Data"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": [
+        "class ndn::ndns::QueryController"
+      ]
+    }, 
+    "class ndn::ndns::CertHelper": {
+      "fields": {}, 
+      "methods": {
+        "doesIdentityExist(const class ndn::security::v2::KeyChain &, const class ndn::Name &)": {
+          "linesOfCode": 10, 
+          "parameter": {
+            "keyChain": "class ndn::security::v2::KeyChain", 
+            "identityName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getIdentityNameFromCert(const class ndn::Name &)": {
+          "linesOfCode": 11, 
+          "parameter": {
+            "certName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "createCertificate(class ndn::security::v2::KeyChain &, const security::Key &, const security::Key &, const std::string &, const time::seconds &)": {
+          "linesOfCode": 31, 
+          "parameter": {
+            "signingKey": "class security::Key", 
+            "certValidity": "class time::seconds", 
+            "keyChain": "class ndn::security::v2::KeyChain", 
+            "key": "class security::Key", 
+            "issuer": "class std::string"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getDefaultKeyNameOfIdentity(const class ndn::security::v2::KeyChain &, const class ndn::Name &)": {
+          "linesOfCode": 5, 
+          "parameter": {
+            "keyChain": "class ndn::security::v2::KeyChain", 
+            "identityName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getDefaultCertificateNameOfIdentity(const class ndn::security::v2::KeyChain &, const class ndn::Name &)": {
+          "linesOfCode": 7, 
+          "parameter": {
+            "keyChain": "class ndn::security::v2::KeyChain", 
+            "identityName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getIdentity(const class ndn::security::v2::KeyChain &, const class ndn::Name &)": {
+          "linesOfCode": 5, 
+          "parameter": {
+            "keyChain": "class ndn::security::v2::KeyChain", 
+            "identityName": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getCertificate(const class ndn::security::v2::KeyChain &, const class ndn::Name &, const class ndn::Name &)": {
+          "linesOfCode": 17, 
+          "parameter": {
+            "certName": "class ndn::Name", 
+            "keyChain": "class ndn::security::v2::KeyChain", 
+            "identity": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getCertificate(const class ndn::security::v2::KeyChain &, const class ndn::Name &)": {
+          "linesOfCode": 7, 
+          "parameter": {
+            "certName": "class ndn::Name", 
+            "keyChain": "class ndn::security::v2::KeyChain"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": []
+    }, 
+    "class ndn::ndns::Query": {
+      "fields": {
+        "m_interestLifetime": "class time::milliseconds", 
+        "m_zone": "class ndn::Name", 
+        "m_link": "class ndn::Block", 
+        "m_rrLabel": "class ndn::Name", 
+        "m_queryType": "class name::Component", 
+        "m_rrType": "class name::Component"
+      }, 
+      "methods": {
+        "operator!=(const class ndn::ndns::Query &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "other"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getInterestLifetime()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "operator==(const class ndn::ndns::Query &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "other"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setZone(const class ndn::Name &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "zone"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getRrType()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setRrType(const name::Component &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "rrType"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setInterestLifetime(const time::milliseconds &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "interestLifetime"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setRrLabel(const class ndn::Name &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "rrLabel"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getQueryType()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "toInterest()": {
+          "linesOfCode": 20, 
+          "parameter": {}, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setQueryType(const name::Component &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "queryType"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "fromInterest(const class ndn::Name &, const class ndn::Interest &)": {
+          "linesOfCode": 24, 
+          "parameter": {
+            "interest": "class ndn::Interest", 
+            "zone": "class ndn::Name"
+          }, 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getZone()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getRrLabel()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "getLink()": {
+          "linesOfCode": 0, 
+          "parameter": [], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }, 
+        "setLink(const class ndn::Block &)": {
+          "linesOfCode": 0, 
+          "parameter": [
+            "link"
+          ], 
+          "calling-function": [], 
+          "run-time-invokes": 0
+        }
+      }, 
+      "base_list": [
+        "noncopyable"
+      ]
+    }
+  }
+}
