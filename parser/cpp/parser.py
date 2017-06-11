@@ -101,10 +101,16 @@ def extract_function_return_type(cursor):
     return "class " + drop_qualifier_and_pointer(cursor.result_type.spelling)
 
 def processInClassFuncDecl(cursor):
-    parameter_list = []
+    parameter_list = {}
+    anonymous_parameter_cnt = 0
     for cc in cursor.get_children():
         if cc.kind == CursorKind.PARM_DECL:
-            parameter_list.append(cc.displayname)
+            pure_type_name = drop_qualifier_and_pointer(cc.type.spelling)
+            if cc.displayname:
+                parameter_list[cc.displayname] = "class " + pure_type_name
+            else:
+                parameter_list[str(anonymous_parameter_cnt)] = "class " + pure_type_name
+                anonymous_parameter_cnt += 1
         else:
             # TODO
             # process if they prefer to

@@ -21,6 +21,12 @@ public:
     void
     print(std::string);
 
+    void
+    defInClass(int a, void* b, Foo* c)
+    {
+        std::cout << "xx" << std::endl;
+    }
+
 private:
     int id;
     int xx;
