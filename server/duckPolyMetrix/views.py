@@ -12,10 +12,13 @@ import sys
 
 logger = logging.getLogger(__name__)
 
-def handle_uploaded_file(f):
-    with open('some/file/name.txt', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
+def handle_uploaded_file(f, projectName):
+		projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json/" + projectName
+		if not os.path.exists(projectDir):
+			os.makedirs(projectDir)
+		with open(projectDir+'/result.json', 'wb+') as destination:
+			for chunk in f.chunks():
+				destination.write(chunk)
 
 def index(request):
     context = {'mytest': "latest_question_list"}
@@ -23,6 +26,10 @@ def index(request):
 
 def uploadProjectJsonFile(request):
 	print request.FILES
+	print request.POST
+	handle_uploaded_file(request.FILES['inputFile'], request.POST['inputProjectName'])
+	context = {'mytest': "latest_question_list"}
+	return render(request, 'website/index.html', context)
 
 
 def collapsibletree(request, metrix="linesOfCode", query="inherited"):
@@ -75,8 +82,6 @@ def getResult(request, attribute='linesOfCode', type='inherited', projectName='d
 	print "get result"
 	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json"
 	print projectDir
-	if not os.path.exists(projectDir):
-		os.makedirs(projectDir)
 
 	resultJson = projectDir + "/result.json"
 
