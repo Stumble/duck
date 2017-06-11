@@ -1,5 +1,15 @@
 class ndn::ndns::Zone,5
+class ndn::ndns::NdnsCacheResolver,90
+class ndn::ndns::DbMgr,458
+class ndn::ndns::ValidatorNdns,32
 class ndn::ndns::Response,137
+class ndn::ndns::CertificateFetcherAppCert,77
 class ndn::ndns::Rrset,15
 class ndn::ndns::RrsetFactory,238
+class ndn::ndns::CertificateFetcherNdnsCert,143
+class ndn::ndns::ManagementTool,636
+class ndn::ndns::NameServer,151
+class ndn::ndns::ConfigFile,97
+class ndn::ndns::IterativeQueryController,218
 class ndn::ndns::CertHelper,93
+class ndn::ndns::Query,44
