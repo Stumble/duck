@@ -7,24 +7,9 @@ import json
 is_from_main_file = clang.cindex.conf.lib.clang_Location_isFromMainFile
 is_in_system_header = clang.cindex.conf.lib.clang_Location_isInSystemHeader
 
-# initialization of reading
-inputAst = 'sample.ast'
-if len(sys.argv) > 1:
-    inputAst = sys.argv[1]
-
-# init global variable
-idx = clang.cindex.Index.create()
-tu = idx.read(inputAst)
-# tu = idx.parse('sample.cpp', args=['-std=c++11'],
-#                 unsaved_files=[('tmp.cpp', s)],  options=0)
-
-
-# enumerate process
-cursor = tu.cursor
-all_cursor = cursor.walk_preorder()
-
 # a dict from className to classInformation
 g_classes = {}
+g_final_result = {}
 
 class cxxClass:
     def __init__(self, name, base_list):
@@ -207,16 +192,53 @@ def processStandaloneFuncDecl(cursor):
         sys.stderr.write("[class not exist]: function:" + function_name + " class:" + belonged_class_name + "\n")
         # raise Exception("[class not exist]: function:" + function_name + " class:" + belonged_class_name)
 
-for cc in all_cursor:
-    if not is_in_system_header(cc.location) and cc.is_definition():
-        if cc.kind == CursorKind.CLASS_DECL:
-            processClassDecl(cc)
-        elif cc.kind == CursorKind.FUNCTION_DECL:
-            sys.stderr.write("ignored non-class_member function : " + cc.displayname + "\n")
-        elif cc.kind == CursorKind.CXX_METHOD:
-            # usually, it should be the class method definition
-            # in the .cpp file
-            processStandaloneFuncDecl(cc)
+# ==============================================================================
+# execution begin here
+
+def work(cursor):
+   for cc in cursor.walk_preorder():
+       if not is_in_system_header(cc.location) and cc.is_definition():
+           if cc.kind == CursorKind.CLASS_DECL:
+               processClassDecl(cc)
+           elif cc.kind == CursorKind.FUNCTION_DECL:
+               sys.stderr.write("ignored non-class_member function : " + cc.displayname + "\n")
+           elif cc.kind == CursorKind.CXX_METHOD:
+                    # usually, it should be the class method definition
+                    # in the .cpp file
+               processStandaloneFuncDecl(cc)
+
+
+
+# initialization of reading
+if len(sys.argv) > 1:
+    for inputAst in sys.argv[1:]:
+        idx = clang.cindex.Index.create()
+        tu = idx.read(inputAst)
+        cursor = tu.cursor
+        work(cursor)
+        for (k, v) in g_classes.iteritems():
+            if v.implemented:
+                g_final_result[k] = v
+        # clean global variable
+        g_classes = {}
+else:
+    raise Exception("no input files")
+
+def final_dump():
+    rtn = {}
+    class_all = {}
+    for (k, v) in g_final_result.iteritems():
+        class_all[k] = v.convert_to_json_dict();
+    rtn['classes'] = class_all
+    # print json.dumps(rtn)
+    print json.dumps(rtn, indent=2)
+
+final_dump()
+
+# init global variable
+# tu = idx.parse('sample.cpp', args=['-std=c++11'],
+#                 unsaved_files=[('tmp.cpp', s)],  options=0)
+
 
 # for (k, v) in g_classes.iteritems():
 #     print v
@@ -224,17 +246,6 @@ for cc in all_cursor:
 
 # json.dumps(myobject.__dict__)
 
-def final_dump():
-    rtn = {}
-    class_all = {}
-    for (k, v) in g_classes.iteritems():
-        if v.implemented:
-            class_all[k] = v.convert_to_json_dict();
-    rtn['classes'] = class_all
-    # print json.dumps(rtn)
-    print json.dumps(rtn, indent=2)
-
-final_dump()
 
 # for t in tu.get_tokens(extent=tu.cursor.extent):
 #     print (t.kind)
