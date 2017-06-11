@@ -1,2 +1,55 @@
-{"classes": {"class testMyOuter::testMyInner::Base": {"methods": {}, "base_list": []}, "class testMyOuter::testMyInner::Bar": {"methods": {"test(const class testMyOuter::testMyInner::Foo *const)": {"linesOfCode": 8, "parameter": ["shit"], "calling-function": [], "run-time-invokes": 0}, "test()": {"linesOfCode": 7, "parameter": [], "calling-function": [], "run-time-invokes": 0}}, "base_list": ["class testMyOuter::testMyInner::Foo", "class testMyOuter::testMyInner::Base"]}, "class testMyOuter::testMyInner::Foo": {"methods": {"print(std::string)": {"linesOfCode": 5, "parameter": ["str"], "calling-function": [], "run-time-invokes": 0}}, "base_list": []}}}
-
+ {
+   "classes": {
+     "class testMyOuter::testMyInner::Base": {
+       "fields": {
+         "x": "class int"
+       },
+       "methods": {},
+       "base_list": []
+     },
+     "class testMyOuter::testMyInner::Bar": {
+       "fields": {
+         "myDad": "class testMyOuter::testMyInner::Foo",
+         "hahah": "class testMyOuter::testMyInner::Foo",
+         "myDzz": "class testMyOuter::testMyInner::Foo"
+       },
+       "methods": {
+         "test(const class testMyOuter::testMyInner::Foo **const)": {
+           "linesOfCode": 8,
+           "parameter": {
+             "shit": "class testMyOuter::testMyInner::Foo"
+           },
+           "calling-function": [],
+           "run-time-invokes": 0
+         },
+         "test()": {
+           "linesOfCode": 7,
+           "parameter": {},
+           "calling-function": [],
+           "run-time-invokes": 0
+         }
+       },
+       "base_list": [
+         "class testMyOuter::testMyInner::Foo",
+         "class testMyOuter::testMyInner::Base"
+       ]
+     },
+     "class testMyOuter::testMyInner::Foo": {
+       "fields": {
+         "xx": "class int",
+         "id": "class int"
+       },
+       "methods": {
+         "print(std::string)": {
+           "linesOfCode": 5,
+           "parameter": {
+             "str": "class std::string"
+           },
+           "calling-function": [],
+           "run-time-invokes": 0
+         }
+       },
+       "base_list": []
+     }
+   }
+ }

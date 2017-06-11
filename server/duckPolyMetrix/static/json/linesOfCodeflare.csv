@@ -1,0 +1,4 @@
+class testMyOuter::testMyInner::Base-class testMyOuter::testMyInner::Bar,15
+class testMyOuter::testMyInner::Base-end,15
+class testMyOuter::testMyInner::Foo-class testMyOuter::testMyInner::Bar,15
+class testMyOuter::testMyInner::Foo-end,15

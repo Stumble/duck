@@ -17,17 +17,18 @@ def index(request):
     return render(request, 'website/index.html', context)
 
 
-def collapsibletree(request):
-	context = {}
+def collapsibletree(request, matrix="linesOfCode"):
+	context = {'matrix':matrix}
 	return render(request, 'website/collapsibletree.html', context)
 
 
-def zoomablesunburst(request):
-	context = {}
+def zoomablesunburst(request, matrix="linesOfCode"):
+	context = {'matrix':matrix}
 	return render(request, 'website/zoomablesunburst.html', context)
 
 
-def getResult(request, projectName):
+def getResult(request, attribute='linesOfCode', projectName='default'):
+	print "get result"
 	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json"
 	print projectDir
 	if not os.path.exists(projectDir):
@@ -38,11 +39,12 @@ def getResult(request, projectName):
 	if not os.path.exists(resultJson):
 		return HttpResponse("json file doesn't exist, please upload project first")
 
-	try:
-		parse(resultJson, projectDir)
+	#try:
+	print "ready to parse"
+	parse(resultJson, projectDir)
 
-	except:
-		return HttpResponse("unexpected error!")
+	#except:
+	#	return HttpResponse("unexpected error!")
 
 	return HttpResponse("parse success")
 

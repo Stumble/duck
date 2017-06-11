@@ -124,8 +124,11 @@ def parse(resultJson, projectDir):
 
       if fieldsAttr in attrDic:
       	fieldsDic = attrDic[fieldsAttr]
+      	print fieldsDic
       	for field in fieldsDic:
-      		c.addField(field, fieldsDic[field])
+      		print field
+      		print fieldsDic[field]
+      		c.fieldDic[field] = fieldsDic[field]
 
       classesList.append(c)
       classesQueryDic[className] = c
@@ -154,6 +157,7 @@ def parse(resultJson, projectDir):
 
     baseClasses = buildGraph.buildInhritedGraph(classesList, classesQueryDic)
 
+    print "generate output json file"
     outputJson.outputFlareInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"flare.json")
     outputJson.outputBundlingInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"InheritedBundling.json")
     outputJson.outputBundlingFieldTypeJson(baseClasses, classesQueryDic, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"FieldBundling.json")
