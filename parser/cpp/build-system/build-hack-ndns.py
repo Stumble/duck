@@ -1,7 +1,7 @@
 
 
 
-with open("build.log") as f:
+with open("build-ndns.log") as f:
     content = f.readlines()
     for line in content:
         components = line.split()
