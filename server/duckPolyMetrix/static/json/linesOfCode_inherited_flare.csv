@@ -1,15 +1,30 @@
-class ndn::ndns::Zone,5
+class ndn::ndns::CertificateFetcherNdnsCert,143
+class ndn::ndns::ValidatorNdns,32
+class ndn::ndns::ConfigFile,97
+class ndn::ndns::RrsetFactory::Error,0
+class ndn::ndns::Rrset,15
+class ndn::ndns::CertHelper,93
+class ndn::ndns::RrsetFactory,238
 class ndn::ndns::NdnsCacheResolver,90
 class ndn::ndns::DbMgr,458
-class ndn::ndns::ValidatorNdns,32
-class ndn::ndns::Response,137
-class ndn::ndns::CertificateFetcherAppCert,77
-class ndn::ndns::Rrset,15
-class ndn::ndns::RrsetFactory,238
-class ndn::ndns::CertificateFetcherNdnsCert,143
-class ndn::ndns::ManagementTool,636
+class ndn::ndns::NdnsDaemon::Error,0
+class ndn::ndns::ConfigFile::Error,0
 class ndn::ndns::NameServer,151
-class ndn::ndns::ConfigFile,97
-class ndn::ndns::IterativeQueryController,218
-class ndn::ndns::CertHelper,93
+class ndn::ndns::Response,137
+class ndn::ndns::ManagementTool,636
+class ndn::ndns::NdnsDig,0
+class ndn::ndns::ManagementTool::Error,0
+class ndn::ndns::DbMgr::Error-class ndn::ndns::DbMgr::ConnectError,0
+class ndn::ndns::DbMgr::Error-class ndn::ndns::DbMgr::ExecuteError,0
+class ndn::ndns::DbMgr::Error-class ndn::ndns::DbMgr::ZoneError,0
+class ndn::ndns::DbMgr::Error-class ndn::ndns::DbMgr::RrsetError,0
+class ndn::ndns::DbMgr::Error-class ndn::ndns::DbMgr::PrepareError,0
+class ndn::ndns::DbMgr::Error-end,0
+class ndn::ndns::NameServer::Error,0
+class ndn::ndns::CertificateFetcherAppCert,77
+class ndn::ndns::Zone,5
+class ndn::ndns::NdnsDaemon,0
 class ndn::ndns::Query,44
+class ndn::ndns::QueryController-class ndn::ndns::IterativeQueryController,218
+class ndn::ndns::QueryController-end,218
+class ndn::ndns::NdnsUpdate,0

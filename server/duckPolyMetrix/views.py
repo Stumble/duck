@@ -12,9 +12,17 @@ import sys
 
 logger = logging.getLogger(__name__)
 
+def handle_uploaded_file(f):
+    with open('some/file/name.txt', 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
 def index(request):
     context = {'mytest': "latest_question_list"}
     return render(request, 'website/index.html', context)
+
+def uploadProjectJsonFile(request):
+	print request.FILES
 
 
 def collapsibletree(request, metrix="linesOfCode", query="inherited"):

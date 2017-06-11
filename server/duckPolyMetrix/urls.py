@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^circlepacking/(?P<matrix>\w+)/(?P<query>\w+)/$', views.circlepacking, name='circlepacking'),
     url(r'^getResult/(?P<projectName>\w+)/$', views.getResult, name='getResult'),
     url(r'^parseProject/(?P<projectName>\w+)/$', views.parseProject, name='parseProject'),
+    url(r'^uploadProjectJsonFile/$', views.uploadProjectJsonFile, name='uploadProjectJsonFile'),
 ]

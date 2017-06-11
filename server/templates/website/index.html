@@ -100,7 +100,13 @@
                 </div>
                 <div class="form-group">
             <!--        <label>File input</label>   -->
-                    <input type="file">
+                    <form action="{% url 'uploadProjectJsonFile'%}" method="post">
+                    <div class="form-group">
+                        <label for="inputFile">File input</label>
+                        <input type="file" class="form-control-file" id="inputFile" aria-describedby="fileHelp">
+                        <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                      </div>
+                    </form>
                 </div>
                 <!-- /.row -->
                 <br><br><br><br><br><br><br><br><br><br><br><br><br>
