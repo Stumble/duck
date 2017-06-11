@@ -3,25 +3,17 @@
 <html lang="en">
 <!-- define the style for the collapsible trees -->
 <style>
-.node {
-  cursor: pointer;
+
+path {
+  stroke: #fff;
+  fill-rule: evenodd;
 }
 
-.node circle {
-  fill: #fff;
-  stroke: steelblue;
-  stroke-width: 1.5px;
+text {
+  font-family: Arial, sans-serif;
+  font-size: 12px;
 }
 
-.node text {
-  font: 10px sans-serif;
-}
-
-.link {
-  fill: none;
-  stroke: #ccc;
-  stroke-width: 1.5px;
-}
 </style>
 <head>
 
@@ -87,12 +79,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Program Hierachy <small>Collapsible Tree</small>
+                            Program Hierachy <small>Zoomable Sunburst</small>
                         </h1>
                     </div>
                     <div id = "graph"> </div>
                     <script> var sourceUrl = "{% static 'json/flare.json' %}";</script>
-                    <script type = 'text/javascript' src = "{% static 'graph/collapsibletree.js' %}"> </script>
+                    <script type = 'text/javascript' src = "{% static 'graph/zoomablesunburst.js' %}"> </script>
                 </div>
             </div>
 
