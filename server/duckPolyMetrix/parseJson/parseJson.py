@@ -88,7 +88,7 @@ def outputResult(baseClasses, classesList, classesQueryDic, attribute, projectDi
 		count += 1
 		outputJson.outputBundlingInheritedJson(classesList, attribute, projectDir+"/"+attribute+"_inherited_bundling.json")
 		count += 1
-		outputJson.outputBundlingFieldTypeJson(classesList, classesQueryDic, attribute, projectDir+"/"+attribute+"_feild_bundling.json")
+		outputJson.outputBundlingFieldTypeJson(classesList, classesQueryDic, attribute, projectDir+"/"+attribute+"_methodHirar_bundling.json")
 		count += 1
 		outputJson.outputMethodHirJson(classesList, attribute, projectDir+"/"+attribute+"_methodHirar_flare.json")
 		count += 1
