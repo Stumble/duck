@@ -15,6 +15,14 @@ text {
   font-size: 12px;
 }
 
+.flotLeft {
+  float: left;
+   margin-left: 20px
+}
+.flotRight {
+  float: right;
+   margin-right: 20px
+}
 </style>
 <head>
 
@@ -90,13 +98,25 @@ text {
                         </h1>
                     </div>
                         <div id="selectBtn">
-                            {% if query == 'inherited' %}
-                            <button type="button" class="btn btn-info active" ><a href="{% url 'zoomablesunburst' 'linesOfCode' 'inherited' %}">inherited</a></button>
-                            <button type="button" class="btn btn-info"><a href="{% url 'zoomablesunburst' 'linesOfCode' 'methodHirar' %}">methods</a></button>
-                            {% else %}
-                            <button type="button" class="btn btn-info" ><a href="{% url 'zoomablesunburst' 'linesOfCode' 'inherited' %}">inherited</a></button>
-                            <button type="button" class="btn btn-info active"><a href="{% url 'zoomablesunburst' 'linesOfCode' 'methodHirar' %}">methods</a></button>
-                            {% endif %}
+                        <form action="{% url 'zoomablesunburst' 'linesOfCode' 'inherited'%}" method="post">
+                        {% csrf_token %}
+                              <div class="form-group flotLeft">
+                                <label for="selectType">Select type:</label>
+                                <select class="custom-select" name="selectType" id="selectType">
+                                  <option value="inherited" {% if query == 'inherited' %}selected='selected'{% endif %}>inherited relationship</option>
+                                  <option value="methodHirar" {% if query == 'methodHirar' %}selected='selected'{% endif %}>methods call relationship</option>
+                                </select>
+                              </div>
+                              <div class="form-group flotLeft">
+                                <label for="selectMetrix">Select metrix:</label>
+                                <select class="custom-select" name="selectMetrix" id="selectMetrix">
+                                  <option value='linesOfCode' {% if matrix == 'lineOfCode' %}selected='selected'{% endif %}>lines of code</option>
+                                  <option value='numOfMethod' {% if matrix == 'numOfMethod' %}selected='selected'{% endif %}>number of methods</option>
+                                  <option value='numOfFields' {% if matrix == 'numOfFields' %}selected='selected'{% endif %}>number of fields</option>
+                                </select>
+                              </div>
+                              <button type="submit" class="pull-right btn btn-primary">Submit</button>
+                        </form>
                         </div>
                     <div id = "graph"> </div>
                     <script> var sourceUrl = "{{baseUrl}}json/{{matrix}}_{{query}}_flare.json";</script>

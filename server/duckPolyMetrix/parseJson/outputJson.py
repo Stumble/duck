@@ -19,12 +19,9 @@ def outputFlareInheritedJson(rootList, matrix, outputFile):
 	f.write(result)
 	f.close()
 
-
-
 def getFlareInheritedJsonRec(nodeClass, matrix):
 	if not nodeClass.childClasses:
 		if not matrix in nodeClass.attrDic:
-			print matrix, nodeClass.attrDic
 			raise Exception("matrix doesn't exist")
 		leafDic = {}
 		leafDic['name'] = nodeClass.name
@@ -47,17 +44,14 @@ def outputBundlingInheritedJson(classList, matrix, outputFile):
 	print 'start generate bundling inherited json file'
 	for classNode in classList:
 		if not matrix in classNode.attrDic:
-			print matrix, classNode.attrDic
 			raise Exception("matrix doesn't exist")
 		classDic = {}
 		classDic['name'] = classNode.name
-		print classNode.name
 		classDic['size'] = classNode.attrDic[matrix]
 		classDic['imports'] = []
 		for childClass in classNode.childClasses:
 			classDic['imports'].append(childClass.name)
 		outerList.append(classDic)
-	print outerList
 	result = json.dumps(outerList, separators=(',',':'))
 
 	print 'generate successfully'
@@ -100,7 +94,6 @@ def outputBundlingFieldTypeJson(classList, classesQueryDic, matrix, outputFile):
 	print 'start generate json file'
 	for classNode in classList:
 		if not matrix in classNode.attrDic:
-			print matrix, classNode.attrDic
 			raise Exception("matrix doesn't exist")
 		classDic = {}
 		classDic['name'] = classNode.name
@@ -109,6 +102,10 @@ def outputBundlingFieldTypeJson(classList, classesQueryDic, matrix, outputFile):
 		for field in classNode.fieldDic:
 			if classNode.fieldDic[field] in classesQueryDic:
 				classDic['imports'].append(classNode.fieldDic[field])
+		for method in classNode.methods:
+			for p in method.parameters:
+				if p in classesQueryDic:
+					classDic['imports'].append(p)
 		outerList.append(classDic)
 
 	result = json.dumps(outerList, separators=(',',':'))

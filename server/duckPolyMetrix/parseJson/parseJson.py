@@ -19,7 +19,7 @@ methodParaAttr = 'parameter'
 methodCallingFuncAttr = 'calling-function'
 
 attrLinesOfCode = 'linesOfCode'
-attrNumOfMethods = 'numOfMethods'
+attrNumOfMethods = 'numOfMethod'
 attrNumOfFields = 'numOfFields'
 
 # example JSON file
@@ -79,6 +79,24 @@ attrNumOfFields = 'numOfFields'
 #   }
 # }
 
+def outputResult(baseClasses, classesList, classesQueryDic, attribute, projectDir):
+	print "output result:"
+	print attribute
+	count = 0
+	try:
+		outputJson.outputFlareInheritedJson(baseClasses, attribute, projectDir+"/"+attribute+"_inherited_flare.json")
+		count += 1
+		outputJson.outputBundlingInheritedJson(classesList, attribute, projectDir+"/"+attribute+"_inherited_bundling.json")
+		count += 1
+		outputJson.outputBundlingFieldTypeJson(classesList, classesQueryDic, attribute, projectDir+"/"+attribute+"_feild_bundling.json")
+		count += 1
+		outputJson.outputMethodHirJson(classesList, attribute, projectDir+"/"+attribute+"_methodHirar_flare.json")
+		count += 1
+		outputCSV.outputInheritedCSV(baseClasses, attribute, projectDir+"/"+attribute+"_inherited_flare.csv")
+	except:
+		print "exception occurred " + str(count)
+
+
 
 def parse(resultJson, projectDir):
         #try:
@@ -90,7 +108,6 @@ def parse(resultJson, projectDir):
 
 
     classesDic = data[classesAttr]
-    print classesDic
     for className in classesDic:
       attrDic = classesDic[className]
       c = JClass(className)
@@ -117,9 +134,13 @@ def parse(resultJson, projectDir):
                   m.attrDic[attrLinesOfCode] = methodAttrDic[methodLOCAttr]
                   c.attrDic[attrLinesOfCode] += methodAttrDic[methodLOCAttr]
           if methodParaAttr in methodAttrDic:
-                  parameterList = methodAttrDic[methodParaAttr]
-                  for paraType in parameterList:
-                          m.addParameters(paraType)
+                  parameterDic = methodAttrDic[methodParaAttr]
+                  if isinstance(parameterDic, dict):
+	                  print methodAttrDic
+	                  print parameterDic
+
+	                  for paraName in parameterDic:
+	                    m.addParameters(parameterDic[paraName])
           if methodCallingFuncAttr in methodAttrDic:
                   callingList = methodAttrDic[methodCallingFuncAttr]
                   for callingfunc in callingList:
@@ -128,7 +149,6 @@ def parse(resultJson, projectDir):
 
       if fieldsAttr in attrDic:
       	fieldsDic = attrDic[fieldsAttr]
-      	print fieldsDic
       	for field in fieldsDic:
       		c.fieldDic[field] = fieldsDic[field]
       		c.attrDic[attrNumOfFields] += 1
@@ -136,7 +156,6 @@ def parse(resultJson, projectDir):
       classesList.append(c)
       classesQueryDic[className] = c
 
-    print classesList
 
 
 
@@ -161,13 +180,10 @@ def parse(resultJson, projectDir):
     baseClasses = buildGraph.buildInhritedGraph(classesList, classesQueryDic)
 
     print "generate output json file"
-    outputJson.outputFlareInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_flare.json")
-    outputJson.outputBundlingInheritedJson(classesList, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_bundling.json")
-    outputJson.outputBundlingFieldTypeJson(classesList, classesQueryDic, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_feild_bundling.json")
-    outputJson.outputMethodHirJson(classesList, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_methodHirar_flare.json")
-    outputCSV.outputInheritedCSV(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"_inherited_flare.csv")
 
-    print baseClasses
+    outputResult(baseClasses, classesList, classesQueryDic, attrLinesOfCode, projectDir)
+    outputResult(baseClasses, classesList, classesQueryDic, attrNumOfMethods, projectDir)
+    outputResult(baseClasses, classesList, classesQueryDic, attrNumOfFields, projectDir)
 
 
         #except:

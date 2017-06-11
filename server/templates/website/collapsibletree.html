@@ -24,7 +24,13 @@
   stroke-width: 1.5px;
 }
 
-#selectBtn {
+.flotLeft {
+  float: left;
+   margin-left: 20px
+}
+.flotRight {
+  float: right;
+   margin-right: 20px
 }
 </style>
 <head>
@@ -100,18 +106,29 @@
                             Program Hierachy <small>Collapsible Tree</small>
                         </h1>
                         <div id="selectBtn">
-                            {% if query == 'inherited' %}
-                            <button type="button" class="btn btn-info active" ><a href="{% url 'collapsibletree' 'linesOfCode' 'inherited' %}">inherited</a></button>
-                            <button type="button" class="btn btn-info"><a href="{% url 'collapsibletree' 'linesOfCode' 'methodHirar' %}">methods</a></button>
-                            {% else %}
-                            <button type="button" class="btn btn-info" ><a href="{% url 'collapsibletree' 'linesOfCode' 'inherited' %}">inherited</a></button>
-                            <button type="button" class="btn btn-info active"><a href="{% url 'collapsibletree' 'linesOfCode' 'methodHirar' %}">methods</a></button>
-                            {% endif %}
+                        <form action="{% url 'collapsibletree' 'linesOfCode' 'inherited'%}" method="post">
+                        {% csrf_token %}
+                              <div class="form-group flotLeft">
+                                <label for="selectType">Select type:</label>
+                                <select class="custom-select" name="selectType" id="selectType">
+                                  <option value="inherited" {% if query == 'inherited' %}selected='selected'{% endif %}>inherited relationship</option>
+                                  <option value="methodHirar" {% if query == 'methodHirar' %}selected='selected'{% endif %}>methods call relationship</option>
+                                </select>
+                              </div>
+                              <div class="form-group flotLeft">
+                                <label for="selectMetrix">Select metrix:</label>
+                                <select class="custom-select" name="selectMetrix" id="selectMetrix">
+                                  <option value='linesOfCode' {% if metrix == 'lineOfCode' %}selected='selected'{% endif %}>lines of code</option>
+                                  <option value='numOfMethod' {% if metrix == 'numOfMethod' %}selected='selected'{% endif %}>number of methods</option>
+                                </select>
+                              </div>
+                              <button type="submit" class="pull-right btn btn-primary">Submit</button>
+                        </form>
                         </div>
                     </div>
                     <hr/>
                     <div id = "graph"> </div>
-                    <script> var sourceUrl = "{{baseUrl}}json/{{matrix}}_{{query}}_flare.json";</script>
+                    <script> var sourceUrl = "{{baseUrl}}json/{{metrix}}_{{query}}_flare.json";</script>
                     <script type = 'text/javascript' src = "{% static 'graph/collapsibletree.js' %}"> </script>
                 </div>
             </div>

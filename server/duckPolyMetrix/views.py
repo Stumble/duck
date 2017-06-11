@@ -17,20 +17,40 @@ def index(request):
     return render(request, 'website/index.html', context)
 
 
-def collapsibletree(request, matrix="linesOfCode", query="inherited"):
-	context = {'matrix':matrix, 'query':query}
+def collapsibletree(request, metrix="linesOfCode", query="inherited"):
+	if "selectType" in request.POST:
+		query = request.POST['selectType']
+	if "selectMetrix" in request.POST:
+		metrix = request.POST['selectMetrix']
+	context = {'metrix':metrix, 'query':query}
+
 	return render(request, 'website/collapsibletree.html', context)
 
 
 def zoomablesunburst(request, matrix="linesOfCode", query="inherited"):
+	print request.POST
+	if "selectType" in request.POST:
+		query = request.POST['selectType']
+	if "selectMetrix" in request.POST:
+		matrix = request.POST['selectMetrix']
 	context = {'matrix':matrix, 'query':query}
+	print context
 	return render(request, 'website/zoomablesunburst.html', context)
     
 def edgebundling(request, matrix="linesOfCode", query="inherited"):
+	if "selectType" in request.POST:
+		query = request.POST['selectType']
+	if "selectMetrix" in request.POST:
+		matrix = request.POST['selectMetrix']
 	context = {'matrix':matrix, 'query':query}
+	print context
 	return render(request, 'website/edgebundling.html', context)
 
 def circlepacking(request, matrix="linesOfCode", query="inherited"):
+	if "selectType" in request.POST:
+		query = request.POST['selectType']
+	if "selectMetrix" in request.POST:
+		matrix = request.POST['selectMetrix']
 	context = {'matrix':matrix, 'query':query}
 	return render(request, 'website/circlepacking.html', context)
 
