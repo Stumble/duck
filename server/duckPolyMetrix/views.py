@@ -14,13 +14,18 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     context = {'mytest': "latest_question_list"}
-    return render(request, 'duckPolyMetrix/index.html', context)
+    return render(request, 'website/index.html', context)
+
+def collapsibletree(request):
+	context = {}
+	return render(request, 'website/collapsibletree.html', context)
+
+
+def zoomablesunburst(request):
+	context = {}
+	return render(request, 'website/zoomablesunburst.html', context)
 
 def getResult(request, projectName):
-	print request
-	print projectName
-	print "123"
-	logger.info("123")
 	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/project/" + projectName
 	print projectDir
 	if not os.path.exists(projectDir):
