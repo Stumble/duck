@@ -25,6 +25,14 @@ def collapsibletree(request, matrix="linesOfCode"):
 def zoomablesunburst(request, matrix="linesOfCode"):
 	context = {'matrix':matrix}
 	return render(request, 'website/zoomablesunburst.html', context)
+    
+def edgebundling(request):
+	context = {}
+	return render(request, 'website/edgebundling.html', context)
+
+def circlepacking(request):
+	context = {}
+	return render(request, 'website/circlepacking.html', context)
 
 
 def getResult(request, attribute='linesOfCode', projectName='default'):

@@ -1,21 +1,37 @@
 {% load static %}
-{% static "" as baseUrl %}
 <!DOCTYPE html>
 <html lang="en">
 <!-- define the style for the collapsible trees -->
+
 <style>
 
-path {
-  stroke: #fff;
-  fill-rule: evenodd;
+.node {
+  cursor: pointer;
 }
 
-text {
-  font-family: Arial, sans-serif;
-  font-size: 12px;
+.node:hover {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.node--leaf {
+  fill: white;
+}
+
+.label {
+  font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-anchor: middle;
+  text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+}
+
+.label,
+.node--root,
+.node--leaf {
+  pointer-events: none;
 }
 
 </style>
+
 <head>
 
     <meta charset="utf-8">
@@ -42,6 +58,7 @@ text {
 
 <body>
     <script src="//d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 <!--    <script type = "text/javascript" src = "d3.min.js"></script> -->
 
     <div id="wrapper">
@@ -86,12 +103,12 @@ text {
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Program Hierachy <small>Zoomable Sunburst</small>
+                            Program Hierachy <small>Circle Packing</small>
                         </h1>
                     </div>
-                    <div id = "graph"> </div>
-                    <script> var sourceUrl = "{{baseUrl}}json/{{matrix}}flare.json";</script>
-                    <script type = 'text/javascript' src = "{% static 'graph/zoomablesunburst.js' %}"> </script>
+                    <div id = "graph"> <svg width="960" height="960"></svg> </div>
+                    <script> var sourceUrl = "{% static 'json/flarecircle.json' %}";</script>
+                    <script type = 'text/javascript' src = "{% static 'graph/circlepacking.js' %}"> </script>
                 </div>
             </div>
 
