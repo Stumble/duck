@@ -84,18 +84,18 @@ def outputResult(baseClasses, classesList, classesQueryDic, attribute, projectDi
 	print "output result:"
 	print attribute
 	count = 0
-	try:
-		outputJson.outputFlareInheritedJson(baseClasses, attribute, projectDir+"/"+attribute+"_inherited_flare.json")
-		count += 1
-		outputJson.outputBundlingInheritedJson(classesList, attribute, projectDir+"/"+attribute+"_inherited_bundling.json")
-		count += 1
-		outputJson.outputBundlingFieldTypeJson(classesList, classesQueryDic, attribute, projectDir+"/"+attribute+"_methodHirar_bundling.json")
-		count += 1
-		outputJson.outputMethodHirJson(classesList, attribute, projectDir+"/"+attribute+"_methodHirar_flare.json")
-		count += 1
-		outputCSV.outputInheritedCSV(baseClasses, attribute, projectDir+"/"+attribute+"_inherited_flare.csv")
-	except:
-		print "exception occurred " + str(count)
+	#try:
+	outputJson.outputFlareInheritedJson(baseClasses, attribute, projectDir+"/"+attribute+"_inherited_flare.json")
+	count += 1
+	outputJson.outputBundlingInheritedJson(classesList, attribute, projectDir+"/"+attribute+"_inherited_bundling.json")
+	count += 1
+	outputJson.outputBundlingFieldTypeJson(classesList, classesQueryDic, attribute, projectDir+"/"+attribute+"_methodHirar_bundling.json")
+	count += 1
+	outputJson.outputMethodHirJson(classesList, attribute, projectDir+"/"+attribute+"_methodHirar_flare.json")
+	count += 1
+	outputCSV.outputInheritedCSV(baseClasses, attribute, projectDir+"/"+attribute+"_inherited_flare.csv")
+	#except:
+	#	print "exception occurred " + str(count)
 
 
 
@@ -135,12 +135,12 @@ def parse(resultJson, projectDir):
                   m.attrDic[attrLinesOfCode] = methodAttrDic[methodLOCAttr]
                   c.attrDic[attrLinesOfCode] += methodAttrDic[methodLOCAttr]
           if methodParaAttr in methodAttrDic:
-                  parameterDic = methodAttrDic[methodParaAttr]
-                  if isinstance(parameterDic, dict):
-	                  for paraName in parameterDic:
-	                    m.addParameters(parameterDic[paraName])
-	        if methodReturnAttr in methodAttrDic:
-	        	m.returnType = methodAttrDic[methodReturnAttr]
+            parameterDic = methodAttrDic[methodParaAttr]
+            if isinstance(parameterDic, dict):
+              for paraName in parameterDic:
+                m.addParameters(parameterDic[paraName])
+          if methodReturnAttr in methodAttrDic:
+								m.returnType = methodAttrDic[methodReturnAttr]
           if methodCallingFuncAttr in methodAttrDic:
                   callingList = methodAttrDic[methodCallingFuncAttr]
                   for callingfunc in callingList:
