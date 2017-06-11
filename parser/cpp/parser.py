@@ -36,6 +36,7 @@ class cxxClass:
         self.base_list = base_list
         self.functions = {}
         self.fields = {}
+        self.implemented = False
 
     def convert_to_json_dict(self):
         rtn = {}
@@ -47,11 +48,14 @@ class cxxClass:
         rtn['methods'] = methods
         return rtn
 
+    def setImplementedFunction(self, f):
+        # Todo: check if it's already there
+        self.implemented = True
+        self.functions[f.name] = f
 
     def setFunction(self, f):
         # Todo: check if it's already there
         self.functions[f.name] = f
-
 
     def addField(self, name, type_name):
         # TODO
@@ -197,17 +201,18 @@ def processStandaloneFuncDecl(cursor):
         cls = g_classes[belonged_class_name]
         if not (function_name in cls.functions):
             raise Exception("function not found")
-        cls.functions[function_name] = updated_func
+        cls.setImplementedFunction(updated_func)
+        # cls.functions[function_name] =
     else:
-        raise Exception("class not exist")
+        sys.stderr.write("[class not exist]: function:" + function_name + " class:" + belonged_class_name + "\n")
+        # raise Exception("[class not exist]: function:" + function_name + " class:" + belonged_class_name)
 
 for cc in all_cursor:
     if not is_in_system_header(cc.location) and cc.is_definition():
         if cc.kind == CursorKind.CLASS_DECL:
             processClassDecl(cc)
         elif cc.kind == CursorKind.FUNCTION_DECL:
-            print "non-class_member function, ignored"
-            print cc.displayname
+            sys.stderr.write("ignored non-class_member function : " + cc.displayname + "\n")
         elif cc.kind == CursorKind.CXX_METHOD:
             # usually, it should be the class method definition
             # in the .cpp file
@@ -223,7 +228,8 @@ def final_dump():
     rtn = {}
     class_all = {}
     for (k, v) in g_classes.iteritems():
-        class_all[k] = v.convert_to_json_dict();
+        if v.implemented:
+            class_all[k] = v.convert_to_json_dict();
     rtn['classes'] = class_all
     # print json.dumps(rtn)
     print json.dumps(rtn, indent=2)
