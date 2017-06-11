@@ -5,7 +5,7 @@ def outputFlareInheritedJson(rootList, matrix, outputFile):
 	f = open(outputFile, 'w')
 
 	outerDic = {}
-	outerDic['name'] = 'flare'
+	outerDic['name'] = 'base'
 	outerDic['children'] = []
 
 	print 'start generate json file'
@@ -63,3 +63,29 @@ def outputBundlingInheritedJson(classList, matrix, outputFile):
 	print 'generate successfully'
 	f.write(result)
 	f.close()
+
+def outputBundlingFieldTypeJson(classList, classesQueryDic, matrix, outputFile):
+	f = open(outputFile, 'w')
+
+	outerList = []
+
+
+	print 'start generate json file'
+	for classNode in classList:
+		if not matrix in classNode.attrDic:
+			print matrix, classNode.attrDic
+			raise Exception("matrix doesn't exist")
+		classDic = {}
+		classDic['name'] = classNode.name
+		classDic['size'] = classNode.attrDic[matrix]
+		classDic['imports'] = []
+		for field in classNode.fieldDic:
+			if classNode.fieldDic[field] in classesQueryDic:
+				classDic['imports'].append(classNode.fieldDic[field])
+		outerList.append(classDic)
+
+	result = json.dumps(outerList, separators=(',',':'))
+
+	print 'generate successfully'
+	f.write(result)
+	f.close()	

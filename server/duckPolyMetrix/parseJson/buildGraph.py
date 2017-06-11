@@ -4,7 +4,7 @@ def buildInhritedGraph(classesList, classesQueryDic):
 		for inherited in c.inheritedList:
 			if not inherited in classesQueryDic:
 				print "inherited classes not found"
-				raise Exception("inherited classes not found")
+				continue
 			c.addParentClass(classesQueryDic[inherited])
 			classesQueryDic[inherited].addChildClass(c)
 	rootList = []

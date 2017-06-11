@@ -10,6 +10,7 @@ class JClass(object):
 		self.methods = []
 		self.childClasses = []
 		self.attrDic = {}
+		self.fieldDic = {}
 
 	def addInheritedClass(self, inheritedClassName):
 		self.inheritedList.append(inheritedClassName)
@@ -25,4 +26,7 @@ class JClass(object):
 
 	def addAttr(self, attrKey, attrValue):
 		self.attrDic[attrKey] = attrValue
+
+	def addField(fieldName, fieldType):
+		self.fieldDic[fieldName] = fieldType
 		

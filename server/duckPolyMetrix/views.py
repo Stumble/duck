@@ -16,6 +16,7 @@ def index(request):
     context = {'mytest': "latest_question_list"}
     return render(request, 'website/index.html', context)
 
+
 def collapsibletree(request):
 	context = {}
 	return render(request, 'website/collapsibletree.html', context)
@@ -24,6 +25,7 @@ def collapsibletree(request):
 def zoomablesunburst(request):
 	context = {}
 	return render(request, 'website/zoomablesunburst.html', context)
+
 
 def getResult(request, projectName):
 	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json"
@@ -36,17 +38,14 @@ def getResult(request, projectName):
 	if not os.path.exists(resultJson):
 		return HttpResponse("json file doesn't exist, please upload project first")
 
-	#try:
-	parse(resultJson, projectDir)
+	try:
+		parse(resultJson, projectDir)
 
-	#except:
-	#	return HttpResponse("unexpected error!")
+	except:
+		return HttpResponse("unexpected error!")
 
+	return HttpResponse("parse success")
 
-
-
-
-	return HttpResponse("Hello, there")
 
 def parseProject(request, projectName):
 	print projectName

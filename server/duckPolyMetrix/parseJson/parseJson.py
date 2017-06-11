@@ -4,12 +4,14 @@ import os
 from jsonClass import JClass
 from jsonMethod import JMethod
 import buildTree
+import buildGraph
 import outputJson
 import outputCSV
 
 inHeritedListAttr = 'base_list'
 classesAttr = 'classes'
 methodsAttr = 'methods'
+fieldsAttr = 'fields'
 
 methodRunTimeAttr = 'run-time invokes'
 methodLOCAttr = 'linesOfCode'
@@ -79,51 +81,56 @@ attrNumOfMethods = 'numOfMethods'
 
 def parse(resultJson, projectDir):
         #try:
-                print "start parse"
-                with open(resultJson) as data_file:
-                        data = json.load(data_file)
-                        classesList = []
-                        classesQueryDic = {}
+  print "start parse"
+  with open(resultJson) as data_file:
+    data = json.load(data_file)
+    classesList = []
+    classesQueryDic = {}
 
 
-                        classesDic = data[classesAttr]
-                        print classesDic
-                        for className in classesDic:
-                                attrDic = classesDic[className]
-                                c = JClass(className)
+    classesDic = data[classesAttr]
+    print classesDic
+    for className in classesDic:
+      attrDic = classesDic[className]
+      c = JClass(className)
 
-                                c.attrDic[attrLinesOfCode] = 0
-                                c.attrDic[attrNumOfMethods] = 0
+      c.attrDic[attrLinesOfCode] = 0
+      c.attrDic[attrNumOfMethods] = 0
 
-                                if inHeritedListAttr in attrDic:
-                                        for inheritedClass in attrDic[inHeritedListAttr]:
-                                                c.addInheritedClass(inheritedClass)
+      if inHeritedListAttr in attrDic:
+        for inheritedClass in attrDic[inHeritedListAttr]:
+          c.addInheritedClass(inheritedClass)
 
-                                if methodsAttr in attrDic:
-                                        methodsDic = attrDic[methodsAttr]
-                                        for methodName in methodsDic:
+      if methodsAttr in attrDic:
+        methodsDic = attrDic[methodsAttr]
+        for methodName in methodsDic:
+          c.attrDic[attrNumOfMethods] += 1
+          methodAttrDic = methodsDic[methodName]
+          m = JMethod(methodName, className)
+          if methodRunTimeAttr in methodAttrDic:
+                  m.setRunTimeInvokes(methodAttrDic[methodRunTimeAttr])
+          if methodLOCAttr in methodAttrDic:
+                  m.setLineOfCode(methodAttrDic[methodLOCAttr])
+                  c.attrDic[attrLinesOfCode] += methodAttrDic[methodLOCAttr]
+          if methodParaAttr in methodAttrDic:
+                  parameterList = methodAttrDic[methodParaAttr]
+                  for paraType in parameterList:
+                          m.addParameters(paraType)
+          if methodCallingFuncAttr in methodAttrDic:
+                  callingList = methodAttrDic[methodCallingFuncAttr]
+                  for callingfunc in callingList:
+                          m.addCallingFunctionName(callingfunc)
+          c.addMethod(m)
 
-                                                c.attrDic[attrNumOfMethods] += 1
-                                                methodAttrDic = methodsDic[methodName]
-                                                m = JMethod(methodName, className)
-                                                if methodRunTimeAttr in methodAttrDic:
-                                                        m.setRunTimeInvokes(methodAttrDic[methodRunTimeAttr])
-                                                if methodLOCAttr in methodAttrDic:
-                                                        m.setLineOfCode(methodAttrDic[methodLOCAttr])
-                                                        c.attrDic[attrLinesOfCode] += methodAttrDic[methodLOCAttr]
-                                                if methodParaAttr in methodAttrDic:
-                                                        parameterList = methodAttrDic[methodParaAttr]
-                                                        for paraType in parameterList:
-                                                                m.addParameters(paraType)
-                                                if methodCallingFuncAttr in methodAttrDic:
-                                                        callingList = methodAttrDic[methodCallingFuncAttr]
-                                                        for callingfunc in callingList:
-                                                                m.addCallingFunctionName(callingfunc)
-                                                c.addMethod(m)
-                                classesList.append(c)
-                                classesQueryDic[className] = c
+      if fieldsAttr in attrDic:
+      	fieldsDic = attrDic[fieldsAttr]
+      	for field in fieldsDic:
+      		c.addField(field, fieldsDic[field])
 
-                        print classesList
+      classesList.append(c)
+      classesQueryDic[className] = c
+
+    print classesList
 
 
 
@@ -145,12 +152,14 @@ def parse(resultJson, projectDir):
 #							if classMethod.name == funcName:
 #								m.addCallingFunction(classMethod)
 
-                        baseClasses = buildTree.buildInhritedTree(classesList, classesQueryDic)
+    baseClasses = buildGraph.buildInhritedGraph(classesList, classesQueryDic)
 
-                        outputJson.outputFlareInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/LOCInherited.json")
-                        outputCSV.outputInheritedCSV(baseClasses, attrLinesOfCode, projectDir+"/LOCInherited.csv")
+    outputJson.outputFlareInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"flare.json")
+    outputJson.outputBundlingInheritedJson(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"InheritedBundling.json")
+    outputJson.outputBundlingFieldTypeJson(baseClasses, classesQueryDic, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"FieldBundling.json")
+    outputCSV.outputInheritedCSV(baseClasses, attrLinesOfCode, projectDir+"/"+attrLinesOfCode+"flare.csv")
 
-                        print baseClasses
+    print baseClasses
 
 
         #except:
