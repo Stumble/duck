@@ -137,7 +137,7 @@
                             {{project}} <small>Edge Bundling</small>
                         </h1>
                         <div id="selectBtn" class="col-lg-8">
-                        <form action="{% url 'collapsibletree' 'linesOfCode' 'inherited'%}" method="post">
+                        <form action="{% url 'edgebundling' 'linesOfCode' 'inherited'%}" method="post">
                         {% csrf_token %}
                               <div class="form-group col-lg-4 ">
                                 <label for="selectType">Select type:</label>
