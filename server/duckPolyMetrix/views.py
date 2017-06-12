@@ -76,7 +76,7 @@ def collapsibletree(request, matrix="linesOfCode", query="inherited"):
 	if 'project' in request.session:
 		context['project'] = request.session['project']
 	if "selectType" in request.POST:
-		context['query'] = request.POST['query']
+		context['query'] = request.POST['selectType']
 	if "selectMetrix" in request.POST:
 		context['matrix'] = request.POST['selectMetrix']
 	print context
@@ -104,7 +104,7 @@ def edgebundling(request, matrix="linesOfCode", query="inherited"):
 	if 'project' in request.session:
 		context['project'] = request.session['project']
 	if "selectType" in request.POST:
-		context['query'] = request.POST['query']
+		context['query'] = request.POST['selectType']
 	if "selectMetrix" in request.POST:
 		context['matrix'] = request.POST['selectMetrix']
 	print context
@@ -130,7 +130,7 @@ def bubblechart(request, matrix="linesOfCode", query="inherited"):
 	if 'project' in request.session:
 		context['project'] = request.session['project']
 	if "selectType" in request.POST:
-		context['query'] = request.POST['query']
+		context['query'] = request.POST['selectType']
 	if "selectMetrix" in request.POST:
 		context['matrix'] = request.POST['selectMetrix']
 	print context
