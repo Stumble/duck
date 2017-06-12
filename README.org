@@ -1,5 +1,5 @@
 * About
-This project is a a Dynamic Universal Software System Visualization Kit(DUCK)(DUCK). 
+This project is a Dynamic Universal Software System Visualization Kit(DUCK)(DUCK). 
 It will help you understand the source code.
 
 * Dependencies
