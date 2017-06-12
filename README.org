@@ -4,6 +4,8 @@ It will help you understand the source code.
 For more details for this project, 
 please check our report at [[https://github.com/Stumble/duck/blob/master/docs/final-report/build/report.pdf][Here]].
 
+We have deployed an example of DUCK at http://duck.yumin-xia.com. Play with it:).
+
 * Dependencies
 
 + Pandas (for fast caculation of PageRank)
