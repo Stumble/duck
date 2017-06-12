@@ -106,7 +106,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Program Hierachy <small>Collapsible Tree</small>
+                            {{project}} <small>Collapsible Tree</small>
                         </h1>
                         <div id="selectBtn">
                         <form action="{% url 'collapsibletree' 'linesOfCode' 'inherited'%}" method="post">
@@ -131,7 +131,7 @@
                     </div>
                     <hr/>
                     <div id = "graph"> </div>
-                    <script> var sourceUrl = "{{baseUrl}}json/{{metrix}}_{{query}}_flare.json";</script>
+                    <script> var sourceUrl = "{{baseUrl}}json/{{project}}/{{matrix}}_{{query}}_flare.json";</script>
                     <script type = 'text/javascript' src = "{% static 'graph/collapsibletree.js' %}"> </script>
                 </div>
             </div>

@@ -12,7 +12,6 @@ def buildMethodTree(classesList, classesQueryDic):
 
 	for c in classesList:
 		if not c.inheritedList:
-			print c.name+" doesn't has parent"
 			rootList.append(c)
 
 	return rootList

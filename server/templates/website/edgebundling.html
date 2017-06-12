@@ -134,7 +134,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Program Hierachy <small>Edge Bundling</small>
+                            {{project}} <small>Edge Bundling</small>
                         </h1>
                         <form action="{% url 'edgebundling' 'linesOfCode' 'inherited'%}" method="post">
                         {% csrf_token %}
@@ -156,7 +156,7 @@
                         </form>
                     </div>
                     <div id = "graph"> </div>
-                    <script> var sourceUrl = "{{baseUrl}}json/{{matrix}}_{{query}}_bundling.json";</script>
+                    <script> var sourceUrl = "{{baseUrl}}json/{{project}}/{{matrix}}_{{query}}_bundling.json";</script>
                     <script type = 'text/javascript' src = "{% static 'graph/edgebundling.js' %}"> </script>
                 </div>
             </div>

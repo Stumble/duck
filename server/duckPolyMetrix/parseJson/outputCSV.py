@@ -7,7 +7,6 @@ def outputInheritedCSV(rootList, matrix, outputFile):
 	print 'start generate json file'
 	for rootClass in rootList:
 		rootList, cumulative = getFlareInheritedCSVRec(rootClass, matrix)
-		print rootList
 		for strLine in rootList:
 			strList.append(strLine)
 
@@ -22,7 +21,6 @@ def outputInheritedCSV(rootList, matrix, outputFile):
 def getFlareInheritedCSVRec(nodeClass, matrix):
 	if not nodeClass.childClasses:
 		if not matrix in nodeClass.attrDic:
-			print matrix, nodeClass.attrDic
 			raise Exception("matrix doesn't exist")
 		return [nodeClass.name+","+str(nodeClass.attrDic[matrix])], nodeClass.attrDic[matrix]
 	else:
@@ -30,7 +28,6 @@ def getFlareInheritedCSVRec(nodeClass, matrix):
 		cumulative = 0
 		for childClass in nodeClass.childClasses:
 			childStrList, total = getFlareInheritedCSVRec(childClass, matrix)
-			print childStrList
 			for strLine in childStrList:
 				strList.append(nodeClass.name+"-"+strLine)
 			cumulative += total

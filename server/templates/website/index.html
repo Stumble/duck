@@ -25,14 +25,14 @@
     <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
 
     <script type="text/javascript">
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    /*var xhttp = new XMLHttpRequest();
+    //xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("demo").innerHTML = this.responseText;
         }
     };
     xhttp.open("GET", "{% url 'getResult' 'projectName' %}", false);
-    xhttp.send();
+    xhttp.send();*/
     </script>
 
 </head>
@@ -97,6 +97,17 @@
                         <li> Retrieve the visual representation by selecting from the left column.</li>
                       </ul>
                     </p>
+                </div>
+                <div class="list-group">
+
+                <div class="page-header">
+                    <h1>Project List</h1>
+                </div>
+                  {% if projectList %}
+                    {% for p in projectList %}
+                    <a href="{% url 'changeProgram' p%}"><button type="button" class="list-group-item list-group-item-action {% if project == p %}active{% endif %}">{{p}}</button></a>
+                    {% endfor %}
+                  {% endif %}
                 </div>
                 <div class="page-header">
                     <h1>File Input</h1>

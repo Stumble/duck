@@ -1,0 +1,197 @@
+class nfd::fw::asf::ProbingModule,140
+class nfd::tools::nfdc::CommandDefinition,6
+class nfd::rib::ReadvertisedRoute,0
+class nfd::rib::AutoPrefixPropagator,389
+class nfd::fw::asf::FaceInfo::Error,0
+class nfd::tools::nfdc::CommandDefinition::Error,0
+class nfd::ForwarderCounters,5
+class nfd::face::Face,95
+class nfd::pit::Pit,5
+class nfd::rib::RibUpdate,33
+class nfd::name_tree::Hash32,0
+class nfd::Network,47
+class nfd::face::TcpTransport,105
+class nfd::face::ProtocolFactory-class nfd::face::UdpFactory,449
+class nfd::face::ProtocolFactory-class nfd::face::UnixStreamFactory,81
+class nfd::face::ProtocolFactory-class nfd::face::TcpFactory,207
+class nfd::face::ProtocolFactory-end,737
+class nfd::fw::asf::FaceInfo,5
+class nfd::ForwarderStatusManager,39
+class nfd::name_tree::Iterator,20
+class nfd::tools::nfdc::text::Separator,0
+class nfd::face::NfdAutoUnixStreamFactoryProtocolFactoryRegistrationClass,0
+class nfd::face::LpFragmenter,76
+class nfd::tools::nfdc::FaceIdFetcher,138
+class nfd::fw::asf::NfdAutoAsfStrategyStrategyRegistrationClass,0
+class nfd::rib::ReadvertiseDestination-class nfd::rib::NfdRibReadvertiseDestination,22
+class nfd::rib::ReadvertiseDestination-end,22
+class nfd::rib::FibUpdater::Error,0
+class nfd::face::LpReassembler::Options,0
+class nfd::fw::NfdAutoClientControlStrategyStrategyRegistrationClass,0
+class ndn::tools::autoconfig::Base-class ndn::tools::autoconfig::NdnFchDiscovery,70
+class ndn::tools::autoconfig::Base-class ndn::tools::autoconfig::MulticastDiscovery,119
+class ndn::tools::autoconfig::Base-class ndn::tools::autoconfig::BaseDns-class ndn::tools::autoconfig::GuessFromIdentityName,22
+class ndn::tools::autoconfig::Base-class ndn::tools::autoconfig::BaseDns-class ndn::tools::autoconfig::GuessFromSearchDomains,12
+class ndn::tools::autoconfig::Base-class ndn::tools::autoconfig::BaseDns-end,34
+class ndn::tools::autoconfig::Base-end,223
+class nfd::strategy_choice::StrategyChoice::InsertResult,0
+class nfd::PrivilegeHelper,164
+class nfd::fw::AccessStrategy::FaceInfo,0
+class nfd::pit::Iterator,21
+class nfd::fw::NfdAutoDropAllUnsolicitedDataPolicyUnsolicitedDataPolicyRegistrationClass,0
+class nfd::tools::nfdc::CommandParser::Error,0
+class nfd::cs::Entry-class nfd::cs::EntryImpl,37
+class nfd::cs::Entry-end,37
+class nfd::face::GenericLinkServiceCounters-class nfd::face::GenericLinkService,15
+class nfd::face::GenericLinkServiceCounters-end,15
+class nfd::fw::asf::RttStats,18
+class nfd::tools::nfdc::LegacyNfdc::Error,0
+class nfd::rib::PropagatedEntry,54
+class nfd::fib::Fib,5
+class nfd::rib::RibEntry,45
+class nfd::TablesConfigSection,128
+class nfd::name_tree::Hashtable,125
+class nfd::ManagerBase::Error,0
+class nfd::name_tree::Node,6
+class nfd::rib::RibManager,331
+class nfd::face::NfdAutoTcpFactoryProtocolFactoryRegistrationClass,0
+class nfd::face::MulticastUdpTransport,26
+class nfd::NfdRunner,0
+class nfd::cs::priority_fifo::NfdAutoPriorityFifoPolicyCsPolicyRegistrationClass,0
+class nfd::face::UdpFactory::Error,0
+class nfd::fw::Strategy-class nfd::fw::AccessStrategy,237
+class nfd::fw::Strategy-class nfd::fw::asf::AsfStrategy,209
+class nfd::fw::Strategy-class nfd::fw::BestRouteStrategy2,117
+class nfd::fw::Strategy-class nfd::fw::MulticastStrategy,25
+class nfd::fw::Strategy-class nfd::fw::BestRouteStrategyBase-class nfd::fw::BestRouteStrategy,6
+class nfd::fw::Strategy-class nfd::fw::BestRouteStrategyBase-class nfd::fw::ClientControlStrategy,6
+class nfd::fw::Strategy-class nfd::fw::BestRouteStrategyBase-end,12
+class nfd::fw::Strategy-class nfd::fw::NccStrategy,214
+class nfd::fw::Strategy-end,814
+class nfd::rib::Rib,20
+class nfd::cs::lru::NfdAutoLruPolicyCsPolicyRegistrationClass,0
+class nfd::cs::Cs,5
+class nfd::name_tree::Hash64,0
+class nfd::rib::RibUpdateBatch,5
+class nfd::Channel-class nfd::TcpChannel,5
+class nfd::Channel-class nfd::UdpChannel,5
+class nfd::Channel-class nfd::UnixStreamChannel,5
+class nfd::Channel-end,15
+class nfd::scheduler::ScopedEventId,19
+class nfd::DeadNonceList,10
+class nfd::PrivilegeHelper::Error,0
+class nfd::StrategyInfoHost-class nfd::measurements::Entry,5
+class nfd::StrategyInfoHost-class nfd::pit::Entry,27
+class nfd::StrategyInfoHost-class nfd::pit::FaceRecord-class nfd::pit::InRecord,6
+class nfd::StrategyInfoHost-class nfd::pit::FaceRecord-class nfd::pit::OutRecord,10
+class nfd::StrategyInfoHost-class nfd::pit::FaceRecord-end,16
+class nfd::StrategyInfoHost-end,48
+class nfd::fw::UnsolicitedDataPolicy-class nfd::fw::AdmitLocalUnsolicitedDataPolicy,8
+class nfd::fw::UnsolicitedDataPolicy-class nfd::fw::AdmitNetworkUnsolicitedDataPolicy,8
+class nfd::fw::UnsolicitedDataPolicy-class nfd::fw::DropAllUnsolicitedDataPolicy,5
+class nfd::fw::UnsolicitedDataPolicy-class nfd::fw::AdmitAllUnsolicitedDataPolicy,5
+class nfd::fw::UnsolicitedDataPolicy-end,26
+class nfd::face::FaceCounters,0
+class nfd::fw::NfdAutoAdmitNetworkUnsolicitedDataPolicyUnsolicitedDataPolicyRegistrationClass,0
+class nfd::SimpleCounter-class nfd::PacketCounter,6
+class nfd::SimpleCounter-class nfd::ByteCounter,6
+class nfd::SimpleCounter-end,12
+class nfd::rib::Service::Error,0
+class nfd::tools::nfdc::StatusReport,41
+class nfd::name_tree::NameTree,5
+class nfd::strategy_choice::Entry,15
+class nfd::fw::NfdAutoAdmitLocalUnsolicitedDataPolicyUnsolicitedDataPolicyRegistrationClass,0
+class nfd::face::LpReassembler,15
+class nfd::ManagerBase-class nfd::NfdManagerBase-class nfd::StrategyChoiceManager,44
+class nfd::ManagerBase-class nfd::NfdManagerBase-class nfd::FaceManager,412
+class nfd::ManagerBase-class nfd::NfdManagerBase-class nfd::FibManager,100
+class nfd::ManagerBase-class nfd::NfdManagerBase-end,556
+class nfd::ManagerBase-end,556
+class nfd::tools::nfdc::CommandArguments,0
+class nfd::NetworkInterfaceInfo,26
+class nfd::LoggerFactory,5
+class nfd::face::UnicastUdpTransport,32
+class nfd::ConfigFile,102
+class nfd::rib::Route,9
+class nfd::face::FaceSystem,77
+class nfd::face::ProtocolFactory::Error,0
+class nfd::tools::nfdc::NfdIdCollector,39
+class nfd::rib::FibUpdater,648
+class nfd::name_tree::EnumerationImpl-class nfd::name_tree::PrefixMatchImpl,25
+class nfd::name_tree::EnumerationImpl-class nfd::name_tree::PartialEnumerationImpl,63
+class nfd::name_tree::EnumerationImpl-class nfd::name_tree::FullEnumerationImpl,43
+class nfd::name_tree::EnumerationImpl-end,131
+class nfd::fw::NfdAutoAdmitAllUnsolicitedDataPolicyUnsolicitedDataPolicyRegistrationClass,0
+class nfd::NetworkInterfacePredicate,28
+class nfd::fw::NfdAutoBestRouteStrategy2StrategyRegistrationClass,0
+class ndn::tools::autoconfig::Base::Error,0
+class nfd::Nfd,124
+class ndn::tools::autoconfig::HttpException,0
+class nfd::tools::nfdc::LegacyNfdc,223
+class nfd::Logger,0
+class nfd::fib::NextHop,0
+class ndn::tools::autoconfig::BaseDns::Error,0
+class nfd::fw::NfdAutoNccStrategyStrategyRegistrationClass,0
+class ndn::NdnAutoconfigServer,0
+class nfd::face::LinkServiceCounters-class nfd::face::LinkService-class nfd::face::GenericLinkService,15
+class nfd::face::LinkServiceCounters-class nfd::face::LinkService-end,15
+class nfd::face::LinkServiceCounters-end,15
+class nfd::face::FaceSystem::ConfigContext,0
+class nfd::fw::asf::AsfMeasurements,54
+class nfd::face::NfdAutoUdpFactoryProtocolFactoryRegistrationClass,0
+class nfd::tools::nfdc::CommandParser,62
+class nfd::measurements::AnyEntry,0
+class ndn::tools::autoconfig::Url,0
+class nfd::Forwarder,492
+class nfd::strategy_choice::StrategyChoice,5
+class nfd::face::LpFragmenter::Options,0
+class nfd::rib::AutoPrefixPropagator::Error,0
+class nfd::face::GenericLinkService::Options,0
+class ndn::PrefixCollection,0
+class nfd::fib::Entry,5
+class nfd::NetworkRegionTable,5
+class ndn::nfd_autoreg::AutoregServer,0
+class ndn::tools::autoconfig::NdnAutoconfig,0
+class nfd::fw::NfdAutoBestRouteStrategyStrategyRegistrationClass,0
+class nfd::measurements::Measurements,15
+class nfd::cs::Policy-class nfd::cs::lru::LruPolicy,45
+class nfd::cs::Policy-class nfd::cs::priority_fifo::PriorityFifoPolicy,106
+class nfd::cs::Policy-end,151
+class nfd::tools::nfdc::Module-class nfd::tools::nfdc::ForwarderGeneralModule,90
+class nfd::tools::nfdc::Module-class nfd::tools::nfdc::StrategyChoiceModule,45
+class nfd::tools::nfdc::Module-class nfd::tools::nfdc::FibModule,63
+class nfd::tools::nfdc::Module-class nfd::tools::nfdc::FaceModule,112
+class nfd::tools::nfdc::Module-class nfd::tools::nfdc::ChannelModule,43
+class nfd::tools::nfdc::Module-class nfd::tools::nfdc::RibModule,93
+class nfd::tools::nfdc::Module-end,446
+class nfd::measurements::MeasurementsAccessor,52
+class nfd::ConfigFile::Error,0
+class nfd::FaceTable,5
+class nfd::fw::RetxSuppression-class nfd::fw::RetxSuppressionExponential,24
+class nfd::fw::RetxSuppression-class nfd::fw::RetxSuppressionFixed,15
+class nfd::fw::RetxSuppression-end,39
+class nfd::fw::NfdAutoAccessStrategyStrategyRegistrationClass,0
+class nfd::rib::Service,86
+class nfd::rib::RibManager::Error,0
+class nfd::LoggerFactory::Error,0
+class nfd::name_tree::HashtableOptions,0
+class nfd::fw::NfdAutoMulticastStrategyStrategyRegistrationClass,0
+class nfd::fw::StrategyInfo-class nfd::fw::AccessStrategy::MtInfo,0
+class nfd::fw::StrategyInfo-class nfd::fw::asf::NamespaceInfo,48
+class nfd::fw::StrategyInfo-class nfd::fw::NccStrategy::PitEntryInfo,0
+class nfd::fw::StrategyInfo-class nfd::fw::NccStrategy::MeasurementsEntryInfo,49
+class nfd::fw::StrategyInfo-class nfd::fw::AccessStrategy::PitInfo,0
+class nfd::fw::StrategyInfo-class nfd::fw::RetxSuppressionExponential::PitInfo,0
+class nfd::fw::StrategyInfo-end,97
+class nfd::RttEstimator,34
+class nfd::face::TransportCounters-class nfd::face::Transport,86
+class nfd::face::TransportCounters-end,86
+class nfd::name_tree::Entry,22
+class nfd::face::UnixStreamTransport,0
+class nfd::face::InternalTransportBase-class nfd::face::InternalClientTransport,41
+class nfd::face::InternalTransportBase-class nfd::face::InternalForwarderTransport,23
+class nfd::face::InternalTransportBase-end,64
+class ndn::tools::autoconfig::NdnAutoconfig::Error,0
+class nfd::rib::FibUpdate,23
+class nfd::face::Transport::Packet,0
+class nfd::CommandAuthenticator,183
