@@ -198,7 +198,7 @@ def parse(resultJson, projectDir, query=""):
     baseClasses = buildGraph.buildInhritedGraph(classesList, classesQueryDic)
 
     print "generate output json file"
-
+    outputCSV.outputPageRankCSV(classesList, classesQueryDic, projectDir+"/pagerank.csv")
     if query:
     	queryProjectDir = projectDir + "/query"
     	if not os.path.exists(queryProjectDir):
