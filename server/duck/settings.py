@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'viv_#q=m9^19)$obmoh8ei_bm43)l0q!$zf6ho4ignub2p%__f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['duck.yumin-xia.com']
 
 
 # Application definition
