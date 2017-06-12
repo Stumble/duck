@@ -64,7 +64,7 @@ def getFlareInheritedJsonRecBasedOnQuery(nodeClass, matrix, query):
 		leafDic = {}
 		leafDic['name'] = remove_class_prefix(nodeClass.name)
 		leafDic['size'] = nodeClass.attrDic[matrix]
-		isFound = query in leafDic['name']
+		isFound = query.lower() in leafDic['name'].lower()
 		print leafDic
 		return leafDic, isFound
 	else:
@@ -75,11 +75,11 @@ def getFlareInheritedJsonRecBasedOnQuery(nodeClass, matrix, query):
 		for childClass in nodeClass.childClasses:
 			childDic, found = getFlareInheritedJsonRecBasedOnQuery(childClass, matrix,query)
 			nonLeafFound = found or nonLeafFound
-			if found or query in nonLeafDic['name']:
+			if found or query.lower() in nonLeafDic['name'].lower():
 				print childDic
 				nonLeafDic['children'].append(childDic)
 
-		return nonLeafDic, nonLeafFound or query in nonLeafDic['name']
+		return nonLeafDic, nonLeafFound or query.lower() in nonLeafDic['name'].lower()
 
 def outputBundlingInheritedJson(classList, matrix, outputFile):
 	f = open(outputFile, 'w')
@@ -112,7 +112,7 @@ def outputBundlingInheritedJsonBasedOnQuery(classList, matrix, outputFile, query
 
 	print 'start generate bundling inherited json file'
 	for classNode in classList:
-		if query in classNode.name:
+		if query.lower() in classNode.name.lower():
 			for childClass in classNode.childClasses:
 				queryIncludeClass.add(childClass.name)
 
@@ -124,9 +124,9 @@ def outputBundlingInheritedJsonBasedOnQuery(classList, matrix, outputFile, query
 		classDic['size'] = classNode.attrDic[matrix]
 		classDic['imports'] = []
 		for childClass in classNode.childClasses:
-			if query in classNode.name or query in childClass.name:
+			if query.lower() in classNode.name.lower() or query.lower() in childClass.name.lower():
 				classDic['imports'].append(remove_class_prefix(childClass.name))
-		if query in classNode.name or classNode.name in queryIncludeClass:
+		if query.lower() in classNode.name.lower() or classNode.name in queryIncludeClass:
 			outerList.append(classDic)
 	result = json.dumps(outerList, separators=(',',':'))
 
@@ -184,11 +184,11 @@ def outputMethodHirJsonBasedOnQuery(classList, matrix, outputFile, query):
 			if not matrix in method.attrDic:
 				raise Exception("matrix doesn't exist")
 			methodDic['size'] = method.attrDic[matrix]
-			if query in method.name:
+			if query.lower() in method.name.lower():
 				foundMethod = True
 				classDic['children'].append(methodDic)
 
-		if foundMethod or query in classNode.name:
+		if foundMethod or query.lower() in classNode.name.lower():
 			outerList['children'].append(classDic)
 
 	result = json.dumps(outerList, separators=(',',':'))
@@ -233,7 +233,7 @@ def outputBundlingFieldTypeJsonBasedOnQuery(classList, classesQueryDic, matrix, 
 
 	print 'start generate bundling inherited json file'
 	for classNode in classList:
-		if query in classNode.name:
+		if query.lower() in classNode.name.lower():
 			for childClass in classNode.childClasses:
 				queryIncludeClass.add(childClass.name)
 
@@ -255,7 +255,7 @@ def outputBundlingFieldTypeJsonBasedOnQuery(classList, classesQueryDic, matrix, 
 					classDic['imports'].append(remove_class_prefix(p))
 			if method.returnType and method.returnType in classesQueryDic:
 				classDic['imports'].append(remove_class_prefix(method.returnType))
-		if query in classNode.name:
+		if query.lower() in classNode.name.lower():
 			outerList.append(classDic)
 
 	result = json.dumps(outerList, separators=(',',':'))

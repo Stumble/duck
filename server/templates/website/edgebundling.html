@@ -143,7 +143,7 @@
                                 <label for="selectType">Select type:</label>
                                 <select class="custom-select" name="selectType" id="selectType">
                                   <option value="inherited" {% if query == 'inherited' %}selected='selected'{% endif %}>inherited relationship</option>
-                                  <option value="methodHirar" {% if query == 'methodHirar' %}selected='selected'{% endif %}>methods list</option>
+                                  <option value="methodHirar" {% if query == 'methodHirar' %}selected='selected'{% endif %}>usage dependency</option>
                                 </select>
                               </div>
 
@@ -157,6 +157,8 @@
                               <div class="form-group col-lg-8">
                             <input type="text" name="query" class="form-control" placeholder="Search for...">
                             <input type="hidden" name="page" value="edgebundling.html">
+                            <input type="hidden" name="selectMetrix" value="{{matrix}}">
+                            <input type="hidden" name="selectType" value="{{query}}">
                             </div>
                             <span class="input-group-btn">
                               <button class="btn btn-default" type="submit">Go!</button>
