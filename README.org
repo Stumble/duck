@@ -1,12 +1,14 @@
 * About
 This project is a Dynamic Universal Software System Visualization Kit(DUCK). 
 It will help you understand the source code.
+For more details for this project, 
+please check our report at [[https://github.com/Stumble/duck/blob/master/docs/final-report/build/report.pdf][Here]].
 
 * Dependencies
 
 + Pandas (for fast caculation of PageRank)
-+ Django
-+ libclang
++ Django (website backend)
++ libclang (static analyzer)
 + python-libclang
 
 * Installation
@@ -16,3 +18,13 @@ sudo apt-get install libclang-3.8-dev python-clang-3.8
 
 pip install pandas django
 #+end_src
+
+* Usage
+#+begin_src shell
+# run a python server for django, 
+cd server
+python manage.py runserver 
+#+end_src
+Then visit http://127.0.0.1:8000/duck/index in browser. You should be able to see the homepage of this project.
+
+We have two examples comes with the project, NDNS and NFD.
