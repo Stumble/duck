@@ -1,0 +1,18 @@
+* About
+This project is a a Dynamic Universal Software System Visualization Kit(DUCK)(DUCK). 
+It will help you understand the source code.
+
+* Dependencies
+
++ Pandas (for fast caculation of PageRank)
++ Django
++ libclang
++ python-libclang
+
+* Installation
+
+#+begin_src shell
+sudo apt-get install libclang-3.8-dev python-clang-3.8
+
+pip install pandas django
+#+end_src
