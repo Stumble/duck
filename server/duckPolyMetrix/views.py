@@ -157,6 +157,34 @@ def getResult(projectName):
 
 	return True
 
+def detailQuery(request):
+	query = request.POST['query']
+	page = request.POST['page']
+	projectName = request.session['project']
+
+	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json/" + projectName
+
+	resultJson = projectDir + "/result.json"
+
+	if not os.path.exists(resultJson):
+		print resultJson+"project doesn't exist"
+		return HttpResponse("project doesn't exist")
+
+	parse(resultJson, projectDir, query)
+
+
+	context = {}
+	context['matrix'] = "linesOfCode"
+	context['query'] = "inherited"
+	if 'project' in request.session:
+		context['project'] = request.session['project']
+	if "selectType" in request.POST:
+		context['query'] = request.POST['selectType']
+	if "selectMetrix" in request.POST:
+		context['matrix'] = request.POST['selectMetrix']
+	context['isQuery'] = True
+	print context
+	return render(request, 'website/'+page, context)
 
 def parseProject(request, projectName):
 	print projectName

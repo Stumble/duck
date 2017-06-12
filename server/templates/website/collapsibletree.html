@@ -25,8 +25,8 @@
 }
 
 .flotLeft {
+  margin-left: : 10px;
   float: left;
-   margin-left: 20px
 }
 .flotRight {
   float: right;
@@ -108,30 +108,47 @@
                         <h1 class="page-header">
                             {{project}} <small>Collapsible Tree</small>
                         </h1>
-                        <div id="selectBtn">
+                        <div id="selectBtn" class="col-lg-8">
                         <form action="{% url 'collapsibletree' 'linesOfCode' 'inherited'%}" method="post">
                         {% csrf_token %}
-                              <div class="form-group flotLeft">
+                              <div class="form-group col-lg-4 ">
                                 <label for="selectType">Select type:</label>
                                 <select class="custom-select" name="selectType" id="selectType">
                                   <option value="inherited" {% if query == 'inherited' %}selected='selected'{% endif %}>inherited relationship</option>
                                   <option value="methodHirar" {% if query == 'methodHirar' %}selected='selected'{% endif %}>methods call relationship</option>
                                 </select>
                               </div>
-                              <div class="form-group flotLeft">
+                              <div class="form-group col-lg-4">
                                 <label for="selectMetrix">Select metrix:</label>
                                 <select class="custom-select" name="selectMetrix" id="selectMetrix">
                                   <option value='linesOfCode' {% if metrix == 'lineOfCode' %}selected='selected'{% endif %}>lines of code</option>
                                   <option value='numOfMethod' {% if metrix == 'numOfMethod' %}selected='selected'{% endif %}>number of methods</option>
                                 </select>
                               </div>
-                              <button type="submit" class="pull-right btn btn-primary">Submit</button>
+
+                              <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                         </div>
+
+                        <div class="col-lg-4">
+                          <div class="input-group">
+                          <form action="{% url 'detailQuery'%}" method="post">
+                            {% csrf_token %}
+                            <input type="text" name="query" class="form-control" placeholder="Search for...">
+                            <input type="hidden" name="page" value="collapsibletree.html">
+                            <span class="input-group-btn">
+                              <button class="btn btn-default" type="submit">Go!</button>
+                            </span>
+                          </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
                     </div>
                     <hr/>
                     <div id = "graph"> </div>
+                    {% if isQuery %}
+                    <script> var sourceUrl = "{{baseUrl}}json/{{project}}/query/{{matrix}}_{{query}}_flare.json";</script>
+                    {% else %}
                     <script> var sourceUrl = "{{baseUrl}}json/{{project}}/{{matrix}}_{{query}}_flare.json";</script>
+                    {% endif %}
                     <script type = 'text/javascript' src = "{% static 'graph/collapsibletree.js' %}"> </script>
                 </div>
             </div>
