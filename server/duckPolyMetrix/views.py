@@ -42,7 +42,7 @@ def index(request):
 		projectList = []
 		for item in os.listdir(projectDir):
 			if os.path.isdir(projectDir+item):
-				if not 'project' in request.session['project']:
+				if not 'project' in request.session:
 					request.session['project'] = item
 				projectList.append(item)
 
@@ -91,7 +91,7 @@ def zoomablesunburst(request, matrix="linesOfCode", query="inherited"):
 	if 'project' in request.session:
 		context['project'] = request.session['project']
 	if "selectType" in request.POST:
-		context['query'] = request.POST['query']
+		context['query'] = request.POST['selectType']
 	if "selectMetrix" in request.POST:
 		context['matrix'] = request.POST['selectMetrix']
 	print context
