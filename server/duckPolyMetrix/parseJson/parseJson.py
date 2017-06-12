@@ -7,6 +7,8 @@ import buildTree
 import buildGraph
 import outputJson
 import outputCSV
+import shutil
+
 
 inHeritedListAttr = 'base_list'
 classesAttr = 'classes'
@@ -80,6 +82,22 @@ attrNumOfFields = 'numOfFields'
 #   }
 # }
 
+def outputResultBasedOnQuery(baseClasses, classesList, classesQueryDic, attribute, projectDir, query):
+	print "output result:"
+	print attribute
+	count = 0
+	try:
+		outputJson.outputFlareInheritedJsonBasedOnQuery(baseClasses, attribute, projectDir+"/"+attribute+"_inherited_flare.json", query)
+		count += 1
+		outputJson.outputBundlingInheritedJsonBasedOnQuery(classesList, attribute, projectDir+"/"+attribute+"_inherited_bundling.json", query)
+		count += 1
+		outputJson.outputBundlingFieldTypeJsonBasedOnQuery(classesList, classesQueryDic, attribute, projectDir+"/"+attribute+"_methodHirar_bundling.json", query)
+		count += 1
+		outputJson.outputMethodHirJsonBasedOnQuery(classesList, attribute, projectDir+"/"+attribute+"_methodHirar_flare.json", query)
+	except Exception as inst:
+		print count
+		print inst
+
 def outputResult(baseClasses, classesList, classesQueryDic, attribute, projectDir):
 	print "output result:"
 	print attribute
@@ -99,7 +117,7 @@ def outputResult(baseClasses, classesList, classesQueryDic, attribute, projectDi
 
 
 
-def parse(resultJson, projectDir):
+def parse(resultJson, projectDir, query=""):
         #try:
   print "start parse"
   with open(resultJson) as data_file:
@@ -181,9 +199,21 @@ def parse(resultJson, projectDir):
 
     print "generate output json file"
 
-    outputResult(baseClasses, classesList, classesQueryDic, attrLinesOfCode, projectDir)
-    outputResult(baseClasses, classesList, classesQueryDic, attrNumOfMethods, projectDir)
-    outputResult(baseClasses, classesList, classesQueryDic, attrNumOfFields, projectDir)
+    if query:
+    	queryProjectDir = projectDir + "/query"
+    	if not os.path.exists(queryProjectDir):
+    		os.makedirs(queryProjectDir)
+    	else:
+				shutil.rmtree(queryProjectDir)
+				os.makedirs(queryProjectDir)
+
+    	outputResultBasedOnQuery(baseClasses, classesList, classesQueryDic, attrLinesOfCode, queryProjectDir, query)
+    	outputResultBasedOnQuery(baseClasses, classesList, classesQueryDic, attrNumOfMethods, queryProjectDir, query)
+    	outputResultBasedOnQuery(baseClasses, classesList, classesQueryDic, attrNumOfFields, queryProjectDir, query)
+    else:
+	    outputResult(baseClasses, classesList, classesQueryDic, attrLinesOfCode, projectDir)
+	    outputResult(baseClasses, classesList, classesQueryDic, attrNumOfMethods, projectDir)
+	    outputResult(baseClasses, classesList, classesQueryDic, attrNumOfFields, projectDir)
 
 
         #except:

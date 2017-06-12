@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^getResult/(?P<projectName>\w+)/$', views.getResult, name='getResult'),
     url(r'^parseProject/(?P<projectName>\w+)/$', views.parseProject, name='parseProject'),
     url(r'^uploadProjectJsonFile/$', views.uploadProjectJsonFile, name='uploadProjectJsonFile'),
+    url(r'^detailQuery/$', views.detailQuery, name='detailQuery'),
 ]
