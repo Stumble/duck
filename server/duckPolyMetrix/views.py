@@ -54,11 +54,13 @@ def index(request):
 		return render(request, 'website/index.html', context)
 
 def uploadProjectJsonFile(request):
+	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json/"
 	handle_uploaded_file(request.FILES['inputFile'], request.POST['inputProjectName'])
 	getResult(request.POST['inputProjectName'])
 	request.session['project'] = request.POST['inputProjectName']
 
 	context = {}
+	projectList = []
 	if 'project' in request.session:
 		context['project'] = request.session['project']
 

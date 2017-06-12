@@ -136,28 +136,11 @@
                         <h1 class="page-header">
                             {{project}} <small>Bubble Chart</small>
                         </h1>
-                        <form action="{% url 'bubblechart' 'linesOfCode' 'inherited'%}" method="post">
-                        {% csrf_token %}
-                              <div class="form-group flotLeft">
-                                <label for="selectType">Select type:</label>
-                                <select class="custom-select" name="selectType" id="selectType">
-                                  <option value="inherited" {% if query == 'inherited' %}selected='selected'{% endif %}>inherited relationship</option>
-                                  <option value="methodHirar" {% if query == 'methodHirar' %}selected='selected'{% endif %}>methods call relationship</option>
-                                </select>
-                              </div>
-                              <div class="form-group flotLeft">
-                                <label for="selectMetrix">Select metrix:</label>
-                                <select class="custom-select" name="selectMetrix" id="selectMetrix">
-                                  <option value='linesOfCode' {% if matrix == 'lineOfCode' %}selected='selected'{% endif %}>lines of code</option>
-                                  <option value='numOfMethod' {% if matrix == 'numOfMethod' %}selected='selected'{% endif %}>number of methods</option>
-                                </select>
-                              </div>
-                              <button type="submit" class="pull-right btn btn-primary">Submit</button>
-                        </form>
+
                     </div>
                     <div id = "graph"> <svg width="960" height="960" font-family="sans-serif" font-size="10" text-anchor="middle"></svg> </div>
 
-                    <script> var sourceUrl = "{{baseUrl}}json/{{project}}/flarebubble.csv";</script>
+                    <script> var sourceUrl = "{{baseUrl}}json/{{project}}/pagerank.csv";</script>
                     <script type = 'text/javascript' src = "{% static 'graph/bubblechart.js' %}"> </script>
                 </div>
             </div>
