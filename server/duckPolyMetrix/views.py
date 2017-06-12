@@ -9,6 +9,7 @@ import logging
 from parseJson.parseJson import parse
 import os
 import sys
+import shutil
 
 logger = logging.getLogger(__name__)
 
@@ -56,11 +57,19 @@ def index(request):
 def uploadProjectJsonFile(request):
 	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json/"
 	handle_uploaded_file(request.FILES['inputFile'], request.POST['inputProjectName'])
-	getResult(request.POST['inputProjectName'])
+
+	projectList = []
+	context = {}
+
+	if not getResult(request.POST['inputProjectName']):
+
+		for item in os.listdir(projectDir):
+			if os.path.isdir(projectDir+item):
+				projectList.append(item)
+		context['projectList'] = projectList
+		return render(request, 'website/index.html', context)
 	request.session['project'] = request.POST['inputProjectName']
 
-	context = {}
-	projectList = []
 	if 'project' in request.session:
 		context['project'] = request.session['project']
 
@@ -152,7 +161,12 @@ def getResult(projectName):
 
 	#try:
 	print "ready to parse"
-	parse(resultJson, projectDir)
+	try:
+		parse(resultJson, projectDir)
+	except:
+		print "parse failed"
+		shutil.rmtree(projectDir)
+		return False
 
 	#except:
 	#	return HttpResponse("unexpected error!")
