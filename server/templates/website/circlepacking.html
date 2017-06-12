@@ -115,7 +115,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Program Hierachy <small>Circle Packing</small>
+                            {{project}} <small>Circle Packing</small>
                         </h1>
                     </div>
                         <form action="{% url 'circlepacking' 'linesOfCode' 'inherited'%}" method="post">
@@ -138,7 +138,7 @@
                               <button type="submit" class="pull-right btn btn-primary">Submit</button>
                         </form>
                     <div id = "graph"> <svg width="960" height="960"></svg> </div>
-                    <script> var sourceUrl = "{{baseUrl}}json/{{matrix}}_{{query}}_flare.json";</script>
+                    <script> var sourceUrl = "{{baseUrl}}json/{{project}}/{{matrix}}_{{query}}_flare.json";</script>
                     <script type = 'text/javascript' src = "{% static 'graph/circlepacking.js' %}"> </script>
                 </div>
             </div>

@@ -20,73 +20,133 @@ def handle_uploaded_file(f, projectName):
 			for chunk in f.chunks():
 				destination.write(chunk)
 
+def changeProgram(request, program):
+	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json/"
+	print 'in change program'
+	request.session['project'] = program
+
+	context = {}
+	if 'project' in request.session:
+		context['project'] = request.session['project']
+
+	projectList = []
+	for item in os.listdir(projectDir):
+		if os.path.isdir(projectDir+item):
+			projectList.append(item)
+	context['projectList'] = projectList
+	return render(request, 'website/index.html', context)
+
 def index(request):
-    context = {'mytest': "latest_question_list"}
-    return render(request, 'website/index.html', context)
+		projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json/"
+
+		projectList = []
+		for item in os.listdir(projectDir):
+			if os.path.isdir(projectDir+item):
+				if not 'project' in request.session['project']:
+					request.session['project'] = item
+				projectList.append(item)
+
+		context = {}
+		if 'project' in request.session:
+			context['project'] = request.session['project']
+
+		context['projectList'] = projectList
+		return render(request, 'website/index.html', context)
 
 def uploadProjectJsonFile(request):
-	print request.FILES
-	print request.POST
 	handle_uploaded_file(request.FILES['inputFile'], request.POST['inputProjectName'])
-	context = {'mytest': "latest_question_list"}
+	getResult(request.POST['inputProjectName'])
+	request.session['project'] = request.POST['inputProjectName']
+
+	context = {}
+	if 'project' in request.session:
+		context['project'] = request.session['project']
+
+	for item in os.listdir(projectDir):
+		if os.path.isdir(projectDir+item):
+			projectList.append(item)
+	context['projectList'] = projectList
 	return render(request, 'website/index.html', context)
 
 
-def collapsibletree(request, metrix="linesOfCode", query="inherited"):
+def collapsibletree(request, matrix="linesOfCode", query="inherited"):
+	context = {}
+	context['matrix'] = matrix
+	context['query'] = query
+	if 'project' in request.session:
+		context['project'] = request.session['project']
 	if "selectType" in request.POST:
-		query = request.POST['selectType']
+		context['query'] = request.POST['query']
 	if "selectMetrix" in request.POST:
-		metrix = request.POST['selectMetrix']
-	context = {'metrix':metrix, 'query':query}
+		context['matrix'] = request.POST['selectMetrix']
+	print context
 
 	return render(request, 'website/collapsibletree.html', context)
 
 
 def zoomablesunburst(request, matrix="linesOfCode", query="inherited"):
-	print request.POST
+	context = {}
+	context['matrix'] = matrix
+	context['query'] = query
+	if 'project' in request.session:
+		context['project'] = request.session['project']
 	if "selectType" in request.POST:
-		query = request.POST['selectType']
+		context['query'] = request.POST['query']
 	if "selectMetrix" in request.POST:
-		matrix = request.POST['selectMetrix']
-	context = {'matrix':matrix, 'query':query}
+		context['matrix'] = request.POST['selectMetrix']
 	print context
 	return render(request, 'website/zoomablesunburst.html', context)
 
 def edgebundling(request, matrix="linesOfCode", query="inherited"):
+	context = {}
+	context['matrix'] = matrix
+	context['query'] = query
+	if 'project' in request.session:
+		context['project'] = request.session['project']
 	if "selectType" in request.POST:
-		query = request.POST['selectType']
+		context['query'] = request.POST['query']
 	if "selectMetrix" in request.POST:
-		matrix = request.POST['selectMetrix']
-	context = {'matrix':matrix, 'query':query}
+		context['matrix'] = request.POST['selectMetrix']
 	print context
 	return render(request, 'website/edgebundling.html', context)
 
 def circlepacking(request, matrix="linesOfCode", query="inherited"):
+	context = {}
+	context['matrix'] = matrix
+	context['query'] = query
+	if 'project' in request.session:
+		context['project'] = request.session['project']
 	if "selectType" in request.POST:
-		query = request.POST['selectType']
+		context['query'] = request.POST['query']
 	if "selectMetrix" in request.POST:
-		matrix = request.POST['selectMetrix']
-	context = {'matrix':matrix, 'query':query}
+		context['matrix'] = request.POST['selectMetrix']
+	print context
 	return render(request, 'website/circlepacking.html', context)
 
 def bubblechart(request, matrix="linesOfCode", query="inherited"):
+	context = {}
+	context['matrix'] = matrix
+	context['query'] = query
+	if 'project' in request.session:
+		context['project'] = request.session['project']
 	if "selectType" in request.POST:
-		query = request.POST['selectType']
+		context['query'] = request.POST['query']
 	if "selectMetrix" in request.POST:
-		matrix = request.POST['selectMetrix']
-	context = {'matrix':matrix, 'query':query}
+		context['matrix'] = request.POST['selectMetrix']
+	print context
 	return render(request, 'website/bubblechart.html', context)
 
 
-def getResult(request, attribute='linesOfCode', type='inherited', projectName='default'):
+def getResult(projectName):
 	print "get result"
-	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json"
+	projectDir = os.path.dirname(os.path.dirname(__file__)) + "/duckPolyMetrix/static/json/" + projectName
 	print projectDir
 
 	resultJson = projectDir + "/result.json"
 
 	if not os.path.exists(resultJson):
-		return HttpResponse("json file doesn't exist, please upload project first")
+		print resultJson+"project doesn't exist"
+		return False
 
 	#try:
 	print "ready to parse"
@@ -95,7 +155,7 @@ def getResult(request, attribute='linesOfCode', type='inherited', projectName='d
 	#except:
 	#	return HttpResponse("unexpected error!")
 
-	return HttpResponse("parse success")
+	return True
 
 
 def parseProject(request, projectName):

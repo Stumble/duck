@@ -134,7 +134,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Program Hierachy <small>Bubble Chart</small>
+                            {{project}} <small>Bubble Chart</small>
                         </h1>
                         <form action="{% url 'bubblechart' 'linesOfCode' 'inherited'%}" method="post">
                         {% csrf_token %}
@@ -157,7 +157,7 @@
                     </div>
                     <div id = "graph"> <svg width="960" height="960" font-family="sans-serif" font-size="10" text-anchor="middle"></svg> </div>
 
-                    <script> var sourceUrl = "{{baseUrl}}json/flarebubble.csv";</script>
+                    <script> var sourceUrl = "{{baseUrl}}json/{{project}}/flarebubble.csv";</script>
                     <script type = 'text/javascript' src = "{% static 'graph/bubblechart.js' %}"> </script>
                 </div>
             </div>
